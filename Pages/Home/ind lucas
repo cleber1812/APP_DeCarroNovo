@@ -1,0 +1,37 @@
+import React, { useCallback, useEffect } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react/cjs/react.development';
+import api from '../../service/api';
+
+const Home = ({navigation, route}) => {
+   const [carros, setCarros] = useState([])
+  useEffect(useCallback(async()=>{
+    try{
+      const {data} = await api.get('carros')
+      console.log(route)
+       setCarros(data)
+    }catch(e){}
+  }),[route.params?.params?.atualizar])
+  return (
+  <View style={{display:'flex', height:'100%', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
+       <View>
+      {
+        carros[0] ? carros.map((carros)=>(
+          <View key={carros.id}>
+            <Text>{carros.modelo}</Text>
+          </View>
+        ))
+        :<Text>Não há carros</Text>
+      }
+    </View>
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('AnunciarCarro',{carros,setCarros})}
+      style={{position: 'absolute', bottom:8,right:8, alignSelf:'flex-end',width: 120, height: 40, padding: 4, marginBottom:8, borderRadius:5, backgroundColor:'lightgreen'}}
+    >
+      <Text style={{alignSelf:'center', color:'white', fontWeight:'bold',fontSize:18}}>Cadastrar</Text>
+    </TouchableOpacity>
+  </View>
+  )
+}
+
+export default Home;
