@@ -3,10 +3,11 @@ import React, {useCallback, useEffect, useState} from 'react';
 import { Platform, StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView, SafeAreaView } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native'
-import Icon2 from 'react-native-vector-icons/Ionicons';
+import Icones from 'react-native-vector-icons/Ionicons';
 
 
-const Veiculo = () => <Icon2 name="car-sport-sharp" size={100} color="#000000"/>;
+const Veiculo = () => <Icones name="car-sport-sharp" size={100} color="#000000"/>;
+const Saida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 
 const Home = ({navigation, route}) => {
 
@@ -25,9 +26,12 @@ const Home = ({navigation, route}) => {
 
       return <View style={styles.container}>
   
+        <View style={{display:'flex', height: 80, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
             <Text style={{marginTop:25, color:'#FFFFFF', fontSize: 36, fontWeight:'bold', backgroundColor: '#3366FF'}}>   DeCarroNovo</Text> 
-    
-            {/* <View style={{display:'flex', height:'100%', flexDirection:'column',justifyContent:'center', alignItems:'center'}}> */}
+  
+            <Saida/>
+
+        </View>
       
             
     <ScrollView showsVerticalScrollIndicator={false}>
