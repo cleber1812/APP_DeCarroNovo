@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Stack.Screen name="Anunciar" component={Anunciar}/>
         <Stack.Screen name="AnunciarCarro" component={AnunciarCarro}/>
         <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio}/>
