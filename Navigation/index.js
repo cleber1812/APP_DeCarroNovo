@@ -8,6 +8,7 @@ import AtualizarAnuncio from '../Pages/AtualizarAnuncio';
 import DeletarAnuncio from '../Pages/DeletarAnuncio';
 import Logout from '../Pages/Logout';
 
+
 const Stack = createNativeStackNavigator()
 
 const Navigation = () => {

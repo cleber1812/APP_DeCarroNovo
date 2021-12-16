@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useCallback, useEffect, useState} from 'react';
-import { Platform, StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native'
 import Icones from 'react-native-vector-icons/Ionicons';
 
 
-const Veiculo = () => <Icones name="car-sport-sharp" size={100} color="#000000"/>;
-const Saida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
+const IconVeiculo = () => <Icones name="car-sport-sharp" size={100} color="#000000"/>;
+const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
+const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
+const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
+const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
 
 const Home = ({navigation, route}) => {
 
@@ -28,56 +31,80 @@ const Home = ({navigation, route}) => {
   
         <StatusBar style='light'/>
 
-        <View style={{display:'flex', height: 80, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
+        <View style={styles.headerView}>
 
           <TouchableOpacity
-              onPress={()=> navigation.navigate('Anunciar')}
-              style={{backgroundColor:'#3366FF', width:250, height:48, marginTop:30, borderWidth:1}} 
+              onPress={()=> navigation.navigate('Home')}
+              style={styles.buttonLogo}
               
           >
-            <Text style={{color:'#FFFFFF', fontSize: 36, fontWeight:'bold'}}
+            <Text style={styles.textLogo}
             >DeCarroNovo</Text>               
           </TouchableOpacity>
           
           <TouchableOpacity
               onPress={()=> navigation.navigate('Logout')}
-              style={{backgroundColor:'#3366FF', width:50, height:48, marginTop:30, borderWidth:2}}              
+              style={styles.buttonMenu}
           >            
-            <Saida/>
+            <IconSaida/>
           </TouchableOpacity>
 
           
         </View>
       
-        <View style={styles.containerMeio}>        
+        <View style={styles.containerMeio}> 
+               
           <ScrollView showsVerticalScrollIndicator={false}>
             {   
             carros[0] ? carros.map((carro)=>(
               <View style={styles.flatView} key={carro.id}>
-                  <View>
-                    <Veiculo/>
+                  <View style={{marginLeft: 10}}>
+                    <IconVeiculo/>
                   </View>
                   <View>
-                  <Text style={styles.h2text}>{carro.modelo}</Text>
-                  <Text style={styles.name}>Marca: {carro.marca}</Text>
-                  <Text style={styles.name}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-                  <Text style={styles.name}>Cor: {carro.cor}</Text>
-                  </View>
-              </View>
+                  <Text style={styles.textTitle}>{carro.modelo}</Text>
+                  <Text style={styles.textDescrition}>Marca: {carro.marca}</Text>
+                  <Text style={styles.textDescrition}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
+                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>
+                  </View>                  
+              </View>              
             ))
             :<Text>Não há carros</Text>
-            }
+            }            
           </ScrollView>
+         
         </View>
     
         <View style={ styles.bottomView}>
+        
           <TouchableOpacity
-            onPress={()=> navigation.navigate('Anunciar')}
-            style={{backgroundColor:'blue', width:150, height:30, marginTop:5}}
-          >
-            <Text style={styles.textStyle}>Anunciar</Text>      
+              onPress={()=> navigation.navigate('Home')}
+              style={styles.buttonTab}
+          >            
+            <IconOfertas/>
+            <Text style={styles.textTab}>Ofetas</Text> 
           </TouchableOpacity>
+
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('AnunciarCarro')}
+              style={styles.buttonTab}
+          >            
+            <IconProcurar/>
+            <Text style={styles.textTab}>Buscar</Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('Anunciar')}
+              style={styles.buttonTab}
+          >            
+            <IconAnunciar/>
+            <Text style={styles.textTab}>Anunciar</Text>
+          </TouchableOpacity>
+
+         
         </View>
+      
       
 
   </View>
@@ -90,20 +117,54 @@ const styles = StyleSheet.create(
       // marginTop: 1,
       // justifyContent: 'center',
       // alignItems: 'center',
-      backgroundColor: '#3366FF',
+      backgroundColor: '#3366FF',      
     },
+    
+    headerView: {      
+      height:80,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'baseline',
+    },
+        
+    buttonLogo:{
+      backgroundColor:'#3366FF',
+      width: 250, 
+      height: 48, 
+      marginTop: 30,
+      borderWidth:0,
+      // alignItems: 'center',
+      // justifyContent: 'center',
+    },
+
+    textLogo:{
+ 
+      color: '#FFFFFF',
+      fontSize:36,
+      fontWeight:'bold'      
+    },
+
+    buttonMenu:{
+      backgroundColor:'#3366FF',
+      width: 50, 
+      height: 48, 
+      marginTop: 30,
+      borderWidth:0,      
+    },
+
     containerMeio: {
       flex: 1,
       marginTop: 1,
       // justifyContent: 'center',
       // alignItems: 'center',
-      backgroundColor: '#c4c4c4',
+      backgroundColor: '#FFFFFF',
+      // backgroundColor: '#c4c4c4',
       marginBottom: 50
 
     },
       flatView: {
         flex: 1,
-        margin: 2,
+        margin: 4,
         marginLeft:5,
         marginRight:5,
         backgroundColor: '#FFFFFF',
@@ -112,11 +173,13 @@ const styles = StyleSheet.create(
         borderRadius: 10,
         flexDirection: 'row',
         borderColor: '#3366FF',
-        borderWidth:2,
-        
-                
+        borderWidth:0,
+        elevation: 5,
+        // shadowColor: '#52006A',
+
+                        
       },
-      h2text: {
+      textTitle: {
         // margin: 10,
         marginTop: 1,
         marginBottom: 5,
@@ -126,7 +189,7 @@ const styles = StyleSheet.create(
         fontWeight: 'bold',
         color: '#3366FF'
       },      
-      name: {
+      textDescrition: {
         marginLeft: 10,        
         // fontFamily: 'Verdana',
         fontSize: 16,
@@ -137,20 +200,29 @@ const styles = StyleSheet.create(
    
         width: '100%', 
         height: 50, 
-        backgroundColor: '#FF9800', 
+        backgroundColor: '#3366FF', 
         flexDirection: 'row',
         justifyContent: 'space-around', 
         alignItems: 'center',
         position: 'absolute',
-        bottom: 0,
-                
+        bottom: 0,                
       },
-
-      textStyle:{
+            
+      buttonTab:{
+   
+        width: 80, 
+        height: 48, 
+        marginTop: 1,
+        borderWidth:0,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      
+      textTab:{
  
         color: '#fff',
-        fontSize:22,
-        alignSelf: 'center',
+        fontSize:12,
+        // alignSelf: 'center',
       }
    
   });

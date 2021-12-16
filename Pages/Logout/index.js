@@ -12,7 +12,7 @@ const Logout = ({navigation}) => {
 return <View>
     <IconLogout/>
 
-    <Text>
+    <Text> Em construção
 
     </Text>
 
