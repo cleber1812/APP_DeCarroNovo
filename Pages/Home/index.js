@@ -41,7 +41,7 @@ const Home = ({navigation, route}) => {
           
           <TouchableOpacity
               onPress={()=> navigation.navigate('Logout')}
-              style={{backgroundColor:'#3366FF', width:50, height:48, marginTop:30, borderWidth:1}}              
+              style={{backgroundColor:'#3366FF', width:50, height:48, marginTop:30, borderWidth:2}}              
           >            
             <Saida/>
           </TouchableOpacity>
