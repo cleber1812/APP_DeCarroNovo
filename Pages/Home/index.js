@@ -24,56 +24,63 @@ const Home = ({navigation, route}) => {
     catch(e){}
   }),[isFocused])
 
-      return <View style={styles.container}>
+  return <View style={styles.container}>
   
-        <View style={{display:'flex', height: 80, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
-            <Text style={{marginTop:25, color:'#FFFFFF', fontSize: 36, fontWeight:'bold', backgroundColor: '#3366FF'}}>   DeCarroNovo</Text> 
-  
-            <Saida/>
+        <StatusBar style='light'/>
 
+        <View style={{display:'flex', height: 80, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
+
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('Anunciar')}
+              style={{backgroundColor:'#3366FF', width:250, height:48, marginTop:30, borderWidth:1}} 
+              
+          >
+            <Text style={{color:'#FFFFFF', fontSize: 36, fontWeight:'bold'}}
+            >DeCarroNovo</Text>               
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('Logout')}
+              style={{backgroundColor:'#3366FF', width:50, height:48, marginTop:30, borderWidth:1}}              
+          >            
+            <Saida/>
+          </TouchableOpacity>
+
+          
         </View>
       
-            
-    <ScrollView showsVerticalScrollIndicator={false}>
-      
-      <View style={styles.containerMeio}>
-      {/* style={{borderWidth:2, */}
-        {   
-        carros[0] ? carros.map((carro)=>(
-          <View style={styles.flatview} key={carro.id}>
-              <View>
-                <Veiculo/>
+        <View style={styles.containerMeio}>        
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {   
+            carros[0] ? carros.map((carro)=>(
+              <View style={styles.flatView} key={carro.id}>
+                  <View>
+                    <Veiculo/>
+                  </View>
+                  <View>
+                  <Text style={styles.h2text}>{carro.modelo}</Text>
+                  <Text style={styles.name}>Marca: {carro.marca}</Text>
+                  <Text style={styles.name}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
+                  <Text style={styles.name}>Cor: {carro.cor}</Text>
+                  </View>
               </View>
-              <View>
-              <Text style={styles.h2text}>{carro.modelo}</Text>
-              <Text style={styles.name}>Marca: {carro.marca}</Text>
-              <Text style={styles.name}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-              <Text style={styles.name}>Cor: {carro.cor}</Text>
-              </View>
-          </View>
-        ))
-        :<Text>Não há carros</Text>
-        }
-      </View>
-
-    </ScrollView>
+            ))
+            :<Text>Não há carros</Text>
+            }
+          </ScrollView>
+        </View>
+    
+        <View style={ styles.bottomView}>
+          <TouchableOpacity
+            onPress={()=> navigation.navigate('Anunciar')}
+            style={{backgroundColor:'blue', width:150, height:30, marginTop:5}}
+          >
+            <Text style={styles.textStyle}>Anunciar</Text>      
+          </TouchableOpacity>
+        </View>
       
-      
 
-
-    <View style={ styles.bottomView}>
-    <TouchableOpacity
-      onPress={()=> navigation.navigate('Anunciar')}
-      style={{backgroundColor:'blue', width:150, height:30, marginTop:5}}
-    >
-      <Text style={styles.textStyle}>Anunciar</Text>      
-
-    </TouchableOpacity>
-    </View>
-
-    <StatusBar style='light'/>
-
-  </View>;
+  </View>
 }
 
 const styles = StyleSheet.create(
@@ -91,8 +98,10 @@ const styles = StyleSheet.create(
       // justifyContent: 'center',
       // alignItems: 'center',
       backgroundColor: '#c4c4c4',
+      marginBottom: 50
+
     },
-      flatview: {
+      flatView: {
         flex: 1,
         margin: 2,
         marginLeft:5,
@@ -103,7 +112,8 @@ const styles = StyleSheet.create(
         borderRadius: 10,
         flexDirection: 'row',
         borderColor: '#3366FF',
-        borderWidth:2
+        borderWidth:2,
+        
                 
       },
       h2text: {
@@ -132,7 +142,8 @@ const styles = StyleSheet.create(
         justifyContent: 'space-around', 
         alignItems: 'center',
         position: 'absolute',
-        bottom: 0
+        bottom: 0,
+                
       },
 
       textStyle:{
