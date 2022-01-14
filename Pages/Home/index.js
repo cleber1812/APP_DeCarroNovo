@@ -74,7 +74,8 @@ const Home = ({navigation, route}) => {
           </ScrollView>
          
         </View>
-    
+
+
         <View style={ styles.bottomView}>
         
           <TouchableOpacity
