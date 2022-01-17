@@ -17,8 +17,8 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Stack.Screen name="Anunciar" component={Anunciar} options={{headerShown:false}}/>
-        <Stack.Screen name="AnunciarCarro" component={AnunciarCarro}/>
-        <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio}/>
+        <Stack.Screen name="AnunciarCarro" component={AnunciarCarro} options={{headerShown:false}}/>
+        <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio} />
         <Stack.Screen name="DeletarAnuncio" component={DeletarAnuncio} options={{headerShown:false}}/>
         <Stack.Screen name="Logout" component={Logout}/>
       </Stack.Navigator>
