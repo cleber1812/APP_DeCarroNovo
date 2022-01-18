@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
-import { botaoInput } from './styles';
+
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
@@ -106,7 +106,7 @@ const AnunciarCarro = ({navigation}) => {
         style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
        />
         
-        {/* <botaoInput></botaoInput> */}
+       
 
 
       <TouchableOpacity
