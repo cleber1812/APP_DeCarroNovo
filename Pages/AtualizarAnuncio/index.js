@@ -20,7 +20,7 @@ const AtualizarCarro = ({navigation}) => {
     const [cor, setCor] = useState()
 
 
-    const handleAtualizar = async() =>{
+    const handleAtualizar = async(id) =>{
         try{
           const dados = {
             id: Number(id),
@@ -31,7 +31,7 @@ const AtualizarCarro = ({navigation}) => {
             cor,    
           }
 
-          const resp = await api.put('carro',dados)
+          const resp = await api.put(`/carro/${id}`,dados)
           if(resp.status === 200){
             Alert.alert('Veículo atualizado com sucesso')
             navigation.navigate('Anunciar',{atualizar:true})
@@ -116,7 +116,7 @@ const AtualizarCarro = ({navigation}) => {
       />
 
       <TouchableOpacity
-        onPress={()=> handleAtualizar()}
+        onPress={()=> handleAtualizar(id)}
         style={styles.btAnunciar}
       >
           <Text style={styles.textAnunciar}>ATUALIZAR ANÚNCIO</Text>
