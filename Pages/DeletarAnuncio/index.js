@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect, useCallback} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native';
 import Icones from 'react-native-vector-icons/Ionicons';
@@ -83,33 +83,43 @@ const DeletarCarro = ({navigation, route}) => {
     </View>
 
 
+    
     <View style={styles.containerMeio}>
+    <ScrollView showsVerticalScrollIndicator={false}>
 
     <Text style={{alignSelf:'center'}}>Deletar Anúncio</Text>
 
       {
         carros[0] ? carros.map((carro)=>(
           <View style={{display:'flex', flexDirection:'row'}} key={carro.id}>
+          
+          
           <View style={styles.flatView}>
-          <Text>{`Id: ${carro.id}`}</Text>
-          <Text>{`Marca: ${carro.marca}`}</Text>
-            
-          </View> 
+          <Text style={styles.textDescrition}>{`Id: ${carro.id}`}</Text>
+          <Text style={styles.textTitle}>{`${carro.modelo}`}</Text>           
+          </View>
+
+          
 
           
           <TouchableOpacity
               onPress={()=> handleDeletar(carro.id)}
-              style={{width: 100, height: 40, padding: 4, marginBottom:8, borderRadius:5, backgroundColor:'lightblue'}}
+              // style={{width: 80, height: 50, padding: 0, marginBottom:30, borderRadius:8, borderColor:'#3366FF' , alignItems:'center', justifyContent:'center', borderWidth:2  }}
+              style={styles.buttonTab}
           >
               <IconExcluir/>
-              <Text style={{alignSelf:'center', color:'black', fontWeight:'bold',fontSize:18}}> EXCLUIR </Text>
+              {/* <Text style={{alignSelf:'center', color:'black', fontWeight:'bold',fontSize:18}}> EXCLUIR </Text> */}
           </TouchableOpacity>
+           
           </View>
         ))
 
         :<Text>Não há carros</Text>
       }
-    </View>  
+    </ScrollView>
+    </View>
+    
+
 
     <View style={ styles.bottomView}>
         
