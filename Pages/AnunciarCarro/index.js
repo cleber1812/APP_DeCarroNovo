@@ -3,6 +3,10 @@ import React, {useState} from 'react';
 import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
+import { BtInput } from './styles';
+
+
+
 
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
@@ -75,12 +79,12 @@ const AnunciarCarro = ({navigation}) => {
     
     <Text style={{alignSelf:'center'}}>Anunciar Carro</Text>
 
-    <TextInput
+    <BtInput
         value={marca}
         placeholder='Marca'
         onChangeText={(e)=> setMarca(e)}
         style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
-      />
+      />   
       <TextInput
         value={modelo}
         placeholder='Modelo'        
@@ -106,7 +110,6 @@ const AnunciarCarro = ({navigation}) => {
         style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
        />
         
-       
 
 
       <TouchableOpacity
@@ -115,6 +118,9 @@ const AnunciarCarro = ({navigation}) => {
       >
         <Text style={styles.textAnunciar}>ANUNCIAR VEÍCULO</Text>
       </TouchableOpacity>
+
+
+      
 
     </View>
 

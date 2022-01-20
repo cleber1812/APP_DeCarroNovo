@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { TextInput } from "react-native";
 
 //export const Container = styled(View)
 
-export const botaoInput = styled(TextInput)`
+export const BtInput = styled(TextInput)`
   width: 220px; 
   height: 40px; 
   border-width:1px; 
