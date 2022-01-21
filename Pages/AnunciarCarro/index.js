@@ -137,7 +137,7 @@ const AnunciarCarro = ({navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-            onPress={()=> navigation.navigate('AnunciarCarro')}
+            onPress={()=> navigation.navigate('Procurar')}
             style={styles.buttonTab}
         >            
           <IconProcurar/>

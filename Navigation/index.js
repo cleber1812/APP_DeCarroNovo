@@ -7,6 +7,7 @@ import AnunciarCarro from '../Pages/AnunciarCarro';
 import AtualizarAnuncio from '../Pages/AtualizarAnuncio';
 import DeletarAnuncio from '../Pages/DeletarAnuncio';
 import Logout from '../Pages/Logout';
+import Procurar from '../Pages/Procurar';
 
 
 const Stack = createNativeStackNavigator()
@@ -16,6 +17,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+        <Stack.Screen name="Procurar" component={Procurar} options={{headerShown:false}}/>
         <Stack.Screen name="Anunciar" component={Anunciar} options={{headerShown:false}}/>
         <Stack.Screen name="AnunciarCarro" component={AnunciarCarro} options={{headerShown:false}}/>
         <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio} options={{headerShown:false}}/>
