@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useCallback, useEffect, useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput, Alert } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native'
 import Icones from 'react-native-vector-icons/Ionicons';
@@ -20,14 +20,45 @@ const Procurar = ({navigation, route}) => {
   const isFocused = useIsFocused()
 
 
-  useEffect(useCallback(async()=>{
-    try{
-      const {data} = await api.get('carros')
-      console.log(route)      
-      setCarros(data)
+  useEffect(useCallback(async(marca)=>{
+    try{      
+      const {data} = await api.get(`/carros/marca/?marca=Ford`)
+      // const {data} = await api.get(`/carros/marca/?marca=${setMarca}`)
+      // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
+      // console.log(route)      
+      setCarros(data, marca)
+      // setCarros(marca)
     }
     catch(e){}
   }),[isFocused])
+
+
+
+  const handleProcurar = async(marca) =>{
+    try{
+      
+      const marca = {
+        marca,           
+      }
+      // const {data} = await api.get(`/carros/marca/?marca=Ford`)
+      // const data = await api.get(`/carros/marca/?marca=${marca}` )
+      const data = await api.get(`/carros/marca/?marca=${marca}` )
+      // const resp = await api.get(`/carros/marca/${marca}` )
+      setCarros(data, marca)
+
+      if(resp.status === 200){
+        Alert.alert('Veículo Procurado com sucesso')
+        navigation.navigate('Anunciar',{atualizar:true})
+      }
+    console.log(resp.data)        
+    }
+    catch(e){
+        Alert.alert('Erro ao Procurar veículo')
+    }      
+}
+
+
+
 
   return <View style={styles.container}>
   
@@ -54,6 +85,7 @@ const Procurar = ({navigation, route}) => {
           
         </View>
 
+{/* //////////////////////////////// */}
         <View style={styles.containerMeio2}>
           <View style={styles.flatView2}>                       
               <TextInput
@@ -64,13 +96,14 @@ const Procurar = ({navigation, route}) => {
               /> 
 
               <TouchableOpacity
-              onPress={()=> handleProcurar()}
+              onPress={()=> handleProcurar(marca)}              
               style={styles.btPesquisar}
               >
               <Text style={styles.textBtPesquisar}>PESQUISAR</Text>                    
               </TouchableOpacity>
           </View>               
         </View>     
+{/* //////////////////////////////// */}
 
         <View style={styles.containerMeio}> 
 
