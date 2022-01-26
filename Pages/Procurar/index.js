@@ -14,19 +14,20 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 const Procurar = ({navigation, route}) => {
 
-  const [marca, setMarca] = useState()
+  const [marca, setMarca] = useState('')
+  // const [marca, setMarca] = useState('Volkswagen')
 
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
 
-  useEffect(useCallback(async(marca)=>{
+  useEffect(useCallback(async()=>{
     try{      
-      const {data} = await api.get(`/carros/marca/?marca=Ford`)
-      // const {data} = await api.get(`/carros/marca/?marca=${setMarca}`)
+      // const {data} = await api.get(`/carros/marca/?marca=Ford`)
+      // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
       // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
       // console.log(route)      
-      setCarros(data, marca)
+      setCarros(data)
       // setCarros(marca)
     }
     catch(e){}
@@ -34,19 +35,23 @@ const Procurar = ({navigation, route}) => {
 
 
 
-  const handleProcurar = async(marca) =>{
+  const handleProcurar = async() =>{
     try{
       
-      const marca = {
-        marca,           
-      }
+      // const marca = {
+      //   marca,           
+      // }
       // const {data} = await api.get(`/carros/marca/?marca=Ford`)
-      // const data = await api.get(`/carros/marca/?marca=${marca}` )
-      const data = await api.get(`/carros/marca/?marca=${marca}` )
+      // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+      const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+      // const data = await api.get(`/carros/marca/?marca=${marca}` )      
       // const resp = await api.get(`/carros/marca/${marca}` )
-      setCarros(data, marca)
+      setCarros(data)
+
+      const resp = {data}
 
       if(resp.status === 200){
+      // if(resp.status === 200){
         Alert.alert('Veículo Procurado com sucesso')
         navigation.navigate('Anunciar',{atualizar:true})
       }
