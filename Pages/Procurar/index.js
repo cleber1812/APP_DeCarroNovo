@@ -21,47 +21,77 @@ const Procurar = ({navigation, route}) => {
   const isFocused = useIsFocused()
 
 
-  useEffect(useCallback(async()=>{
-    try{      
-      // const {data} = await api.get(`/carros/marca/?marca=Ford`)
-      // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
-      // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
-      // console.log(route)      
-      setCarros(data)
-      // setCarros(marca)
-    }
-    catch(e){}
-  }),[isFocused])
+  // useEffect(useCallback(async()=>{
+  //   try{      
+  //     // const {data} = await api.get(`/carros/marca/?marca=Ford`)
+  //     // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+  //     // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
+  //     // console.log(route)      
+  //     setCarros(data)
+  //     // setCarros(marca)
+  //   }
+  //   catch(e){}
+  // }),[isFocused])
 
 
-
-  const handleProcurar = async() =>{
-    try{
+{/* //////////////////////////////// */}
+//   const handleProcurar = async() =>{
+//     try{
       
-      // const marca = {
-      //   marca,           
-      // }
-      // const {data} = await api.get(`/carros/marca/?marca=Ford`)
-      // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
-      const {data} = await api.get(`/carros/marca/?marca=${marca}`)
-      // const data = await api.get(`/carros/marca/?marca=${marca}` )      
-      // const resp = await api.get(`/carros/marca/${marca}` )
-      setCarros(data)
+//       // const marca = {
+//       //   marca,           
+//       // }
+//       // const {data} = await api.get(`/carros/marca/?marca=Ford`)
+//       // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+//       const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+//       // const data = await api.get(`/carros/marca/?marca=${marca}` )      
+//       // const resp = await api.get(`/carros/marca/${marca}` )
+//       setCarros(data)
 
-      const resp = {data}
+//       const resp = {data}
 
-      if(resp.status === 200){
-      // if(resp.status === 200){
-        Alert.alert('Veículo Procurado com sucesso')
-        navigation.navigate('Anunciar',{atualizar:true})
-      }
-    console.log(resp.data)        
+//       if(resp.status === 200){
+//       // if(resp.status === 200){
+//         Alert.alert('Veículo Procurado com sucesso')
+//         navigation.navigate('Anunciar',{atualizar:true})
+//       }
+//     console.log(resp.data)        
+//     }
+//     catch(e){
+//         Alert.alert('Erro ao Procurar veículo')
+//     }      
+// }
+{/* //////////////////////////////// */}
+    
+
+const handleProcurar = async() =>{
+  try{   
+    const resp = await api.get(`/carros/marca/?marca=${marca}`)
+    
+    // setCarros(resp)
+    setCarros(resp.data)
+
+    if (!resp.data.length) { 
+      // console.log("O array está vazio!") 
+    // if (!resp.length) {
+    // // if (resp.length = null) {  
+    // //   carrosResposta = {mensagem: "Carros não encontrado para marca: " + marca
+      Alert.alert("Carros não encontrado para marca: " + marca)
+      // Alert.alert("Carros não encontrado" + marca)
     }
-    catch(e){
-        Alert.alert('Erro ao Procurar veículo')
-    }      
-}
 
+    // if(resp.status === 200){
+    //   Alert.alert('Veículo Procurado com sucesso')
+    //   // navigation.navigate('Anunciar',{atualizar:true})
+    // }
+  console.log(resp.data)        
+  // console.log(resp)        
+  }
+  catch(e){
+      Alert.alert('Erro ao Procurar veículo')
+      
+  }      
+}
 
 
 
