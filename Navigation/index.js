@@ -8,6 +8,8 @@ import AtualizarAnuncio from '../Pages/AtualizarAnuncio';
 import DeletarAnuncio from '../Pages/DeletarAnuncio';
 import Logout from '../Pages/Logout';
 import Procurar from '../Pages/Procurar';
+import Login from '../Pages/Login';
+import CadastrarPessoa from '../Pages/CadastrarPessoa';
 
 
 const Stack = createNativeStackNavigator()
@@ -22,7 +24,9 @@ const Navigation = () => {
         <Stack.Screen name="AnunciarCarro" component={AnunciarCarro} options={{headerShown:false}}/>
         <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio} options={{headerShown:false}}/>
         <Stack.Screen name="DeletarAnuncio" component={DeletarAnuncio} options={{headerShown:false}}/>
-        <Stack.Screen name="Logout" component={Logout}/>
+        <Stack.Screen name="Logout" component={Logout} options={{headerShown:false}}/>
+        <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
+        <Stack.Screen name="Cadastrar" component={CadastrarPessoa} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 
@@ -9,84 +9,163 @@ const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
+const IconCheck = () => <Icones name="checkbox" size={30} color="#3366FF"/>;
+const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#3366FF"/>;
 
 
 
-const Logout = ({navigation}) => {
+const CadastrarPessoa = ({navigation}) => {
 
-return (
-<View style={styles.container}>
+  const [nome, setNome] = useState()
+  const [email, setEmail] = useState()
+  const [senha, setSenha] = useState()
+  
+
+  const handleCadastrarPessoa = async() =>{
+      try{
+          const dados = {
+            nome,
+            email,
+            senha,            
+          }
+
+          const resp = await api.post('pessoas',dados)
+          if(resp.status === 200){
+            Alert.alert('Pessoa cadastrada com sucesso')
+            navigation.navigate('Anunciar',{atualizar:true})
+          }
+          console.log(resp.data)
+          // navigation.navigate('Login')
+      }catch(e){
+        Alert.alert('Erro ao cadastrar pessoa')
+      }
+
+  }
+
+
+  return( 
+  
+  <View style={styles.container}>
     
-    <StatusBar style='light'/>
-    
-          <View style={styles.headerView}>
+  <StatusBar style='light'/>
   
-          <TouchableOpacity
-              onPress={()=> navigation.navigate('Home')}
-              style={styles.buttonLogo}      
-          >
-              <Text style={styles.textLogo}
-              >DeCarroNovo</Text>               
-          </TouchableOpacity>
-  
-          <TouchableOpacity
-              onPress={()=> navigation.navigate('Logout')}
-              style={styles.buttonMenu}
-          >            
-              <IconSaida/>
-          </TouchableOpacity>
-          
-          </View>
-  
-  
-  
-      <View style={styles.containerPrincipal}>
+  <View style={styles.headerView}>
+
+  <TouchableOpacity
+      onPress={()=> navigation.navigate('Home')}
+      style={styles.buttonLogo}
       
-  
-        <Text style={{alignSelf:'center'}}>Nome</Text>
+  >
+    <Text style={styles.textLogo}
+    >DeCarroNovo</Text>               
+  </TouchableOpacity>
 
-        <Text style={{alignSelf:'center'}}>Email</Text>
+  <TouchableOpacity
+      onPress={()=> navigation.navigate('Logout')}
+      style={styles.buttonMenu}
+  >            
+    <IconSaida/>
+  </TouchableOpacity>
+
+  </View>
+
+  <View style={styles.containerMeio}>
+  
+      <ScrollView showsVerticalScrollIndicator={false}>
+
+  <View style={styles.containerPrincipal}>  
+    <IconUser/>
+    
+    <Text style={styles.textEntrada}>Nome</Text>
+    
+      <TextInput
+        value={nome}
+        placeholder='Nome'
+        onChangeText={(e)=> setNome(e)}
+        style={styles.btTextInput}
+      />   
+
+    <Text style={styles.textEntrada}>Email</Text>
+    
+      <TextInput
+        value={email}
+        placeholder='Email'        
+        onChangeText={(e)=> setEmail(e)}
+        style={styles.btTextInput}
+      />      
+    
+    <Text style={styles.textEntrada}>Senha</Text>
+    
+       <TextInput  
+        value={senha}
+        placeholder='Senha'
+        onChangeText={(e)=> setSenha(e)}
+        style={styles.btTextInput}
+       />
+
+        <View style={{flexDirection:'row', marginTop:'10%'}}>
+
+                <IconCheck/>
+                <Text style={{alignSelf:'center', paddingHorizontal: 10}}>Aceito os termos do contrato</Text>
+
+        </View>
         
-        
-        
-          
+
+
+      <TouchableOpacity
+        onPress={()=> handleCadastrarPessoa()}
+        style={styles.btAnunciar}
+      >
+        <Text style={styles.textAnunciar}>CADASTRAR</Text>
+      </TouchableOpacity>
+
       </View>
-  
-          <View style={ styles.bottomView}>
-              
-              <TouchableOpacity
-                  onPress={()=> navigation.navigate('Home')}
-                  style={styles.buttonTab}
-              >            
-              <IconOfertas/>
-              <Text style={styles.textTab}>Ofetas</Text> 
-              </TouchableOpacity>
-  
-              <TouchableOpacity
-                  onPress={()=> navigation.navigate('Procurar')}
-                  style={styles.buttonTab}
-              >            
-              <IconProcurar/>
-              <Text style={styles.textTab}>Buscar</Text>
-              </TouchableOpacity>
-  
-  
-              <TouchableOpacity
-                  onPress={()=> navigation.navigate('Anunciar')}
-                  style={styles.buttonTab}
-              >            
-              <IconAnunciar/>
-              <Text style={styles.textTab}>Anunciar</Text>
-              </TouchableOpacity>
-  
-          </View> 
-  
-    </View>
-  
-  
-    )}
-  
 
+
+      </ScrollView>      
+
+    </View>
+
+
+      
+    <View style={ styles.bottomView}>
+        
+        <TouchableOpacity
+            onPress={()=> navigation.navigate('Home')}
+            style={styles.buttonTab}
+        >            
+          <IconOfertas/>
+          <Text style={styles.textTab}>Ofetas</Text> 
+        </TouchableOpacity>
+
+        <TouchableOpacity
+            onPress={()=> navigation.navigate('Procurar')}
+            style={styles.buttonTab}
+        >            
+          <IconProcurar/>
+          <Text style={styles.textTab}>Buscar</Text>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity
+            onPress={()=> navigation.navigate('Anunciar')}
+            style={styles.buttonTab}
+        >            
+          <IconAnunciar/>
+          <Text style={styles.textTab}>Anunciar</Text>
+        </TouchableOpacity>
+
+       
+      </View> 
+
+
+
+ 
+  </View>
+  )
+
+
+}
 
 
 
@@ -172,7 +251,16 @@ const styles = StyleSheet.create(
         backgroundColor: '#FFFFFF',      
         marginBottom: 50
       },
-  
+
+      containerPrincipal2: {
+        flex: 1,
+        marginTop: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',        
+        backgroundColor: '#FFFFFF',      
+        marginBottom: 50
+      },
+
       btAnunciar:{
         backgroundColor:'#3366FF',
         width: 280, 
@@ -191,7 +279,21 @@ const styles = StyleSheet.create(
         fontWeight:'bold',
         // textAlign: 'center',
       },
-  
+
+      textEntrada:{   
+        color: '#3366FF',
+        fontSize:20,
+        fontWeight:'bold',
+        // alignItems:'flex-start',
+        alignSelf:'flex-start',
+        marginLeft:'10%',
+        // marginLeft:10,
+        
+      },
+      
+      btTextInput:{
+        width: '80%', height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5,
+      },
   
       btPesquisar:{
         backgroundColor:'#3366FF',
@@ -295,4 +397,6 @@ const styles = StyleSheet.create(
      
     });
 
-export default Logout;
+
+
+export default CadastrarPessoa;

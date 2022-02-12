@@ -43,7 +43,7 @@ const Home = ({navigation, route}) => {
           </TouchableOpacity>
           
           <TouchableOpacity
-              onPress={()=> navigation.navigate('Logout')}
+              onPress={()=> navigation.navigate('Login')}
               style={styles.buttonMenu}
           >            
             <IconSaida/>
