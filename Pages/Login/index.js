@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
-import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 
 import { useAuth } from '../../hooks/AuthState';
@@ -13,14 +12,14 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 
 const Login = ({navigation}) => {
-    const {signIn} = useState()
+    const {signIn} = useAuth()
 
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     
 
     const handleLogin = async() =>{
-      // console.log(email,senha)
+      
         try{
 
           //   const dados = {
@@ -29,7 +28,7 @@ const Login = ({navigation}) => {
           //     }
 
           // const resp = await api.post(`/login`, email, senha)
-
+          console.log(email,senha)
           await signIn(email, senha)
           setEmail(undefined)
           setSenha(undefined)
