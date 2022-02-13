@@ -89,7 +89,9 @@ const CadastrarPessoa = ({navigation}) => {
     
       <TextInput
         value={email}
-        placeholder='Email'        
+        placeholder='Email'   
+        autoComplete='email'
+        autoCapitalize='none'
         onChangeText={(e)=> setEmail(e)}
         style={styles.btTextInput}
       />      
@@ -99,6 +101,8 @@ const CadastrarPessoa = ({navigation}) => {
        <TextInput  
         value={senha}
         placeholder='Senha'
+        autoCapitalize='none'
+        secureTextEntry
         onChangeText={(e)=> setSenha(e)}
         style={styles.btTextInput}
        />

@@ -4,6 +4,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView 
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 
+import { useAuth } from '../../hooks/AuthState';
+
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
@@ -11,25 +13,33 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 
 const Login = ({navigation}) => {
+    const {signIn} = useState()
 
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     
 
     const handleLogin = async() =>{
+      // console.log(email,senha)
         try{
 
-            const dados = {
-                email,
-                senha,                
-              }
+          //   const dados = {
+          //       email,
+          //       senha,                
+          //     }
 
-          const resp = await api.post(`/login`, email, senha)
-          if(resp.status === 200){
-            Alert.alert('Login realizado com sucesso')
-            // navigation.navigate('Anunciar',{atualizar:true})
-          }
-        console.log(resp.data)        
+          // const resp = await api.post(`/login`, email, senha)
+
+          await signIn(email, senha)
+          setEmail(undefined)
+          setSenha(undefined)
+          navigation.navigate('Anunciar')
+
+          // if(resp.status === 200){
+          //   Alert.alert('Login realizado com sucesso')
+          //   navigation.navigate('Anunciar')
+          // }
+        // console.log(resp.data)        
         }
         catch(e){
             Alert.alert('Erro ao efetuar login')
@@ -79,6 +89,8 @@ const Login = ({navigation}) => {
       <TextInput
         value={email}
         placeholder='digite seu e-mail'        
+        autoComplete='email'
+        autoCapitalize='none'
         onChangeText={(e)=> setEmail(e)}
         style={styles.btTextInput}
       />
@@ -88,6 +100,8 @@ const Login = ({navigation}) => {
       <TextInput
         value={senha}
         placeholder='digite sua senha'        
+        autoCapitalize='none'
+        secureTextEntry
         onChangeText={(e)=> setSenha(e)}
         style={styles.btTextInput}
       />
