@@ -3,9 +3,7 @@ import React, {useState} from 'react';
 import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
-// import { CheckBox} from 'react-native-ui-kitten'
-// import { CheckBox } from '@ui-kitten/components';
-import { Button, CheckBox } from '@ui-kitten/components';
+import CheckBox from 'react-native-check-box';
 
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
@@ -16,15 +14,24 @@ const IconCheck = () => <Icones name="checkbox" size={30} color="#3366FF"/>;
 const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#3366FF"/>;
 
 
-
 const CadastrarPessoa = ({navigation}) => {
 
   const [nome, setNome] = useState()
   const [email, setEmail] = useState()
   const [senha, setSenha] = useState()
   
-  // const [checked, setChecked] = useState(false);
+  const [isChecked, setChecked] = useState(true);
   // const [counter, setCounter] = useState(0);
+
+  // const Props = {};  
+  //   constructor(props){
+  //     super(props);
+  //     this.state={
+  //       isChecked:true
+  //     }
+  //   }
+  
+
 
   const handleCadastrarPessoa = async() =>{
       try{
@@ -115,22 +122,17 @@ const CadastrarPessoa = ({navigation}) => {
 
         <View style={{flexDirection:'row', marginTop:'10%'}}>
 
-
-              {/* <CheckBox
-              checked={checked}
-              onChange={nextChecked => setChecked(nextChecked)}>
-              {`Checked: ${checked}`}
-              </CheckBox> */}
-
-                
-
-                {/* <Button onPress={() => setCounter(counter + 1)}>
-                  BUTTON
-                </Button> */}
-
-                
+                <CheckBox
+                // style={{flex: 1, padding: 10}}    
+                onClick={()=> setChecked(oldState => !oldState)}
+                isChecked={isChecked}
+                checkBoxColor={'#3366FF'}
+                uncheckedCheckBoxColor={'#000000'}
+                // leftText={"CheckBox"}
+                />                
               
-                <IconCheck/>
+                {/* <IconCheck/> */}
+
                 <Text style={{alignSelf:'center', paddingHorizontal: 10}}>Aceito os termos do contrato</Text>
 
         </View>
