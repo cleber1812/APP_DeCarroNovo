@@ -7,8 +7,8 @@ const AuthContext = createContext()
 
 export const AuthProvider = ({children}) =>{
   const [data, setData] = useState(async()=>{
-    const token = await AsyncStorage.getItem()
-    const client = await AsyncStorage.getItem()
+    const token = await AsyncStorage.getItem('')
+    const client = await AsyncStorage.getItem('')
 
       if(token && client){
         return {token, client: JSON.parse(client) }
