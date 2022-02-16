@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
+// import { CheckBox} from 'react-native-ui-kitten'
+// import { CheckBox } from '@ui-kitten/components';
+import { Button, CheckBox } from '@ui-kitten/components';
 
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
@@ -20,22 +23,25 @@ const CadastrarPessoa = ({navigation}) => {
   const [email, setEmail] = useState()
   const [senha, setSenha] = useState()
   
+  // const [checked, setChecked] = useState(false);
+  // const [counter, setCounter] = useState(0);
 
   const handleCadastrarPessoa = async() =>{
       try{
-          const dados = {
-            nome,
-            email,
-            senha,            
-          }
-
-          const resp = await api.post('pessoas',dados)
+          // const dados = {
+          //   nome,
+          //   email,
+          //   senha,            
+          // }
+          // const resp = await api.post('pessoas',dados)
+          const resp = await api.post('pessoas',{nome, email, senha})
           if(resp.status === 200){
             Alert.alert('Pessoa cadastrada com sucesso')
-            navigation.navigate('Anunciar',{atualizar:true})
+            navigation.navigate('Anunciar')
+            // navigation.navigate('Anunciar',{atualizar:true})
           }
           console.log(resp.data)
-          // navigation.navigate('Login')
+          
       }catch(e){
         Alert.alert('Erro ao cadastrar pessoa')
       }
@@ -109,6 +115,21 @@ const CadastrarPessoa = ({navigation}) => {
 
         <View style={{flexDirection:'row', marginTop:'10%'}}>
 
+
+              {/* <CheckBox
+              checked={checked}
+              onChange={nextChecked => setChecked(nextChecked)}>
+              {`Checked: ${checked}`}
+              </CheckBox> */}
+
+                
+
+                {/* <Button onPress={() => setCounter(counter + 1)}>
+                  BUTTON
+                </Button> */}
+
+                
+              
                 <IconCheck/>
                 <Text style={{alignSelf:'center', paddingHorizontal: 10}}>Aceito os termos do contrato</Text>
 
