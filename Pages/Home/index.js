@@ -18,7 +18,7 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 const Home = ({navigation, route}) => {
   
   const {user} = useAuth
-  const [carros, setCarros] = useState([])
+    const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
 

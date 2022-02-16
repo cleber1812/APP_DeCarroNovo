@@ -44,7 +44,7 @@ const Navigation = () => {
         <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio} options={{headerShown:false}}/>
         <Stack.Screen name="DeletarAnuncio" component={DeletarAnuncio} options={{headerShown:false}}/>
         {/* <Stack.Screen name="Logout" component={Logout} options={{headerShown:false}}/> */}
-        <Stack.Screen name="Logout" component={Logout} options={({navigation})=>({
+        <Stack.Screen name="Logout" component={Logout} options={({navigation})=>({          
           headerLeft: ()=> null,
           headerRight: ()=> (
             <TouchableOpacity
