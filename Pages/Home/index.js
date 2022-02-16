@@ -5,6 +5,9 @@ import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native'
 import Icones from 'react-native-vector-icons/Ionicons';
 
+import { useAuth } from '../../hooks/AuthState';
+
+
 
 const IconVeiculo = () => <Icones name="car-sport-sharp" size={100} color="#000000"/>;
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
@@ -13,7 +16,8 @@ const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
 
 const Home = ({navigation, route}) => {
-
+  
+  const {user} = useAuth
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
@@ -22,6 +26,7 @@ const Home = ({navigation, route}) => {
     try{
       const {data} = await api.get('carros')
       console.log(route)      
+      console.log(user)
       setCarros(data)
     }
     catch(e){}
@@ -52,7 +57,8 @@ const Home = ({navigation, route}) => {
           
         </View>
       
-        <View style={styles.containerMeio}> 
+        <View style={styles.containerMeio}>
+          {/* <Text>{`Lista de ${user.nome}`}</Text>  */}
                
           <ScrollView showsVerticalScrollIndicator={false}>
             {   
