@@ -30,6 +30,7 @@ const Login = ({navigation}) => {
           // const resp = await api.post(`/login`, email, senha)
           console.log(email,senha)
           await signIn(email, senha)
+          console.log(email,senha)
           setEmail(undefined)
           setSenha(undefined)
           navigation.navigate('Anunciar')
