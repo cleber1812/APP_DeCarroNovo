@@ -1,108 +1,92 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useCallback, useEffect, useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import api from '../../service/api';
-import { useIsFocused } from '@react-navigation/native'
+import React from 'react';
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import Icones from 'react-native-vector-icons/Ionicons';
 
-import { useAuth } from '../../hooks/AuthState';
-
-
-
-const IconVeiculo = () => <Icones name="car-sport-sharp" size={100} color="#000000"/>;
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
 
-const Home = ({navigation, route}) => {
-  
-  const {user} = useAuth
-  const [carros, setCarros] = useState([])
-  const isFocused = useIsFocused()
 
-
-  useEffect(useCallback(async()=>{
-    try{
-      const {data} = await api.get('carros')
-      console.log(route)      
-      console.log(user)
-      setCarros(data)
-    }
-    catch(e){}
-  }),[isFocused])
-
-
-  const handleCarroId = async(id) =>{
-    try{   
-      const {data} = await api.get(`/carro/${id}`)
-      setCarros(data)
-      console.log(data)   
-      navigation.navigate('CarroId')
-      }
-    catch(e){}      
-  }
-
-
+const MenuPessoas = ({navigation}) => {
   return <View style={styles.container}>
-  
-        <StatusBar style='light'/>
 
-        <View style={styles.headerView}>
+    <StatusBar style='light'/>
+    
+    <View style={styles.headerView}>
 
-          <TouchableOpacity
-              onPress={()=> navigation.navigate('Home')}
-              style={styles.buttonLogo}
-              
-          >
-            <Text style={styles.textLogo}
-            >DeCarroNovo</Text>               
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-              onPress={()=> navigation.navigate('MenuPessoas')}
-              style={styles.buttonMenu}
-          >            
-            <IconSaida/>
-          </TouchableOpacity>
+    <TouchableOpacity
+        onPress={()=> navigation.navigate('Home')}
+        style={styles.buttonLogo}
+        
+    >
+      <Text style={styles.textLogo}
+      >DeCarroNovo</Text>               
+    </TouchableOpacity>
 
-          
-        </View>
-      
-        <View style={styles.containerMeio}>
-          {/* <Text>{`Lista de ${user.nome}`}</Text>  */}
-               
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {   
-            carros[0] ? carros.map((carro)=>(
-              <View style={styles.flatView} key={carro.id}>
-                  <View style={{marginLeft: 10}}>
-                    <IconVeiculo/>
-                  </View>
-                  <View>
-                  <Text style={styles.textTitle}>{carro.modelo}</Text>
-                  <Text style={styles.textDescrition}>Marca: {carro.marca}</Text>
-                  <Text style={styles.textDescrition}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>
-                  </View>  
+    <TouchableOpacity
+        onPress={()=> navigation.navigate('MenuPessoas')}
+        style={styles.buttonMenu}
+    >            
+      <IconSaida/>
+    </TouchableOpacity>
 
-                  {/* <TouchableOpacity 
-                    style={{borderWidth:1, borderRadius:5,}}
-                    onPress={()=>handleCarroId(carro.id)}
-                  >
-                    <Text>Ver</Text>
-                  </TouchableOpacity> */}
-
-              </View>              
-            ))
-            :<Text>Não há carros</Text>
-            }            
-          </ScrollView>
-         
-        </View>
+    </View>
 
 
-        <View style={ styles.bottomView}>
+    <View style={styles.containerPrincipal}>
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('Login')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>LOGIN</Text>
+    </TouchableOpacity>
+
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('Logout')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>MEUS DADOS</Text>
+    </TouchableOpacity>
+
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('Cadastrar')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>CADASTRAR USUÁRIO</Text>
+    </TouchableOpacity>
+
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('AtualizarPessoa')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>ATUALIZAR CADASTRO</Text>
+    </TouchableOpacity>
+    
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('ListarPessoas')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>LISTAR USUÁRIOS</Text>
+    </TouchableOpacity>
+
+
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('DeletarPessoa')}
+      style={styles.btAnunciar}
+    >
+      <Text style={styles.textAnunciar}>DELETAR USUÁRIO</Text>
+    </TouchableOpacity>
+
+    </View>
+
+    <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -131,10 +115,8 @@ const Home = ({navigation, route}) => {
 
          
         </View>
-      
-      
 
-  </View>
+  </View>;
 }
 
 const styles = StyleSheet.create(
@@ -187,8 +169,36 @@ const styles = StyleSheet.create(
       backgroundColor: '#FFFFFF',
       // backgroundColor: '#c4c4c4',
       marginBottom: 50
-
     },
+
+    containerPrincipal: {
+      flex: 1,
+      marginTop: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#FFFFFF',      
+      marginBottom: 50
+    },
+
+    btAnunciar:{
+      backgroundColor:'#3366FF',
+      width: 280, 
+      height: 50, 
+      borderRadius: 8,      
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 30,      
+      // alignSelf: 'center',
+      // borderWidth:2,
+    },
+  
+     textAnunciar:{   
+      color: '#FFFFFF',
+      fontSize:24,
+      fontWeight:'bold',
+      // textAlign: 'center',
+    },
+
       flatView: {
         flex: 1,
         margin: 4,
@@ -254,4 +264,5 @@ const styles = StyleSheet.create(
    
   });
 
-export default Home;
+
+export default MenuPessoas;

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 
@@ -13,6 +13,19 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 
 const Logout = ({navigation}) => {
+
+  const [meusDados, setMeusDados] = useState([])
+//verificar se tem array de dependência mesmo
+
+  useEffect(useCallback(async()=>{
+    try{
+      const { data } = await api.get('meusdados')
+      console.log(data)
+      setMeusDados(data)
+    }
+    catch(e){}
+  }),[])
+
 
 return (
 <View style={styles.container}>
@@ -30,7 +43,7 @@ return (
           </TouchableOpacity>
   
           <TouchableOpacity
-              onPress={()=> navigation.navigate('Logout')}
+              onPress={()=> navigation.navigate('MenuPessoas')}
               style={styles.buttonMenu}
           >            
               <IconSaida/>
@@ -40,14 +53,32 @@ return (
   
   
   
-      <View style={styles.containerPrincipal}>
+      <View style={styles.containerMeio}>
+
+        <ScrollView showsVerticalScrollIndicator={false}>
       
   
-        <Text style={{alignSelf:'center'}}>Nome</Text>
+        {/* <Text style={{alignSelf:'center'}}>Nome</Text>
 
-        <Text style={{alignSelf:'center'}}>Email</Text>
+        <Text style={{alignSelf:'center'}}>Email</Text> */}
         
-        
+
+          {   
+            // meusDados[0] ? meusDados.map((pessoa)=>(
+              <View style={styles.flatView} key={meusDados.id}>
+                  <View style={{marginLeft: 10}}>
+                    {/* <IconVeiculo/> */}
+                  </View>
+                  <View>
+                  <Text style={styles.textTitle}>Nome: {meusDados.nome}</Text>
+                  <Text style={styles.textDescrition}>Id: {meusDados.id}</Text>
+                  <Text style={styles.textDescrition}> Email: {meusDados.email}</Text>                  
+                  </View>                  
+              </View>              
+            // ))
+            // :<Text>Não há pessoas</Text>
+          }  
+          </ScrollView>
         
           
       </View>

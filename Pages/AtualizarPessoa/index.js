@@ -1,198 +1,151 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
-import CheckBox from 'react-native-check-box';
 
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
-const IconCheck = () => <Icones name="checkbox" size={30} color="#3366FF"/>;
-const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#3366FF"/>;
 
 
-const CadastrarPessoa = ({navigation}) => {
 
-  const [nome, setNome] = useState()
-  const [email, setEmail] = useState()
-  const [senha, setSenha] = useState()
+const AtualizarPessoa = ({navigation}) => {
+    const [id, setId] = useState()
+    const [nome, setNome] = useState()
+    const [email, setEmail] = useState()
+    const [senha, setSenha] = useState()
+
+    const handleAtualizarPessoa = async(id) =>{
+        try{            
+            const dados = {
+                id: Number(id),
+                nome,
+                email,
+                senha,                
+                }          
+            const resp = await api.put(`/pessoa/${id}`,dados)
+            if(resp.status === 200){
+              Alert.alert('Pessoa atualizada com sucesso')
+              navigation.navigate('Anunciar')              
+            }
+            console.log(resp.data)
+            
+        }catch(e){
+          Alert.alert('Erro ao atualizar pessoa')
+        }
   
-  const [isChecked, setChecked] = useState(true);
-  // const [counter, setCounter] = useState(0);
+    }
 
-  // const Props = {};  
-  //   constructor(props){
-  //     super(props);
-  //     this.state={
-  //       isChecked:true
-  //     }
-  //   }
+
+return (
+<View style={styles.container}>
+    
+    <StatusBar style='light'/>
+    
+          <View style={styles.headerView}>
   
-
-
-  const handleCadastrarPessoa = async() =>{
-      try{
-          // const dados = {
-          //   nome,
-          //   email,
-          //   senha,            
-          // }
-          // const resp = await api.post('pessoas',dados)
-          const resp = await api.post('pessoas',{nome, email, senha})
-          if(resp.status === 200){
-            Alert.alert('Pessoa cadastrada com sucesso')
-            navigation.navigate('Login')
-            // navigation.navigate('Anunciar')
-          }
-          console.log(resp.data)
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('Home')}
+              style={styles.buttonLogo}      
+          >
+              <Text style={styles.textLogo}
+              >DeCarroNovo</Text>               
+          </TouchableOpacity>
+  
+          <TouchableOpacity
+              onPress={()=> navigation.navigate('MenuPessoas')}
+              style={styles.buttonMenu}
+          >            
+              <IconSaida/>
+          </TouchableOpacity>
           
-      }catch(e){
-        Alert.alert('Erro ao cadastrar pessoa')
-      }
-
-  }
-
-
-  return( 
+          </View>
   
-  <View style={styles.container}>
-    
-  <StatusBar style='light'/>
   
-  <View style={styles.headerView}>
-
-  <TouchableOpacity
-      // onPress={()=> navigation.navigate('Home')}
-      style={styles.buttonLogo}
+  
+      <View style={styles.containerPrincipal}>
       
-  >
-    <Text style={styles.textLogo}
-    >DeCarroNovo</Text>               
-  </TouchableOpacity>
-
-  <TouchableOpacity
-      // onPress={()=> navigation.navigate('MenuPessoas')}
-      style={styles.buttonMenu}
-  >            
-    <IconSaida/>
-  </TouchableOpacity>
-
-  </View>
-
-  <View style={styles.containerMeio}>
   
-      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={{alignSelf:'center'}}>AtualizarPessoa</Text>
 
-  <View style={styles.containerPrincipal}>  
-    <IconUser/>
-    
-    <Text style={styles.textEntrada}>Nome</Text>
-    
-      <TextInput
+        <TextInput
+        value={id}
+        placeholder='Digite o número do usuário'        
+        onChangeText={(e)=> setId(e)}
+        style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
+        />
+ 
+        <TextInput
         value={nome}
         placeholder='Nome'
         onChangeText={(e)=> setNome(e)}
-        style={styles.btTextInput}
-      />   
-
-    <Text style={styles.textEntrada}>Email</Text>
-    
-      <TextInput
+        style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
+        />
+        
+        <TextInput
         value={email}
-        placeholder='Email'   
-        autoComplete='email'
-        autoCapitalize='none'
+        placeholder='E-mail' 
+        autoCapitalize='none'       
         onChangeText={(e)=> setEmail(e)}
-        style={styles.btTextInput}
-      />      
-    
-    <Text style={styles.textEntrada}>Senha</Text>
-    
-       <TextInput  
+        style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}
+        />
+        
+        <TextInput  
         value={senha}
         placeholder='Senha'
-        autoCapitalize='none'
         secureTextEntry
         onChangeText={(e)=> setSenha(e)}
-        style={styles.btTextInput}
-       />
-
-        <View style={{flexDirection:'row', marginTop:'10%'}}>
-
-                <CheckBox
-                // style={{flex: 1, padding: 10}}    
-                onClick={()=> setChecked(oldState => !oldState)}
-                isChecked={isChecked}
-                checkBoxColor={'#3366FF'}
-                uncheckedCheckBoxColor={'#000000'}
-                // leftText={"CheckBox"}
-                />                
-              
-                {/* <IconCheck/> */}
-
-                <Text style={{alignSelf:'center', paddingHorizontal: 10}}>Aceito os termos do contrato</Text>
-
-        </View>
+        style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5}}     
+        />
         
-
-
-      <TouchableOpacity
-        onPress={()=> handleCadastrarPessoa()}
+        <TouchableOpacity
+        onPress={()=> handleAtualizarPessoa(id)}
         style={styles.btAnunciar}
-      >
-        <Text style={styles.textAnunciar}>CADASTRAR</Text>
-      </TouchableOpacity>
-
-      </View>
-
-
-      </ScrollView>      
-
-    </View>
-
-
-      
-    {/* <View style={ styles.bottomView}>
+        >
+          <Text style={styles.textAnunciar}>ATUALIZAR CADASTRO</Text>
+        </TouchableOpacity>
         
-        <TouchableOpacity
-            onPress={()=> navigation.navigate('Home')}
-            style={styles.buttonTab}
-        >            
-          <IconOfertas/>
-          <Text style={styles.textTab}>Ofetas</Text> 
-        </TouchableOpacity>
+          
+      </View>
+  
+          <View style={ styles.bottomView}>
+              
+              <TouchableOpacity
+                  onPress={()=> navigation.navigate('Home')}
+                  style={styles.buttonTab}
+              >            
+              <IconOfertas/>
+              <Text style={styles.textTab}>Ofetas</Text> 
+              </TouchableOpacity>
+  
+              <TouchableOpacity
+                  onPress={()=> navigation.navigate('Procurar')}
+                  style={styles.buttonTab}
+              >            
+              <IconProcurar/>
+              <Text style={styles.textTab}>Buscar</Text>
+              </TouchableOpacity>
+  
+  
+              <TouchableOpacity
+                  onPress={()=> navigation.navigate('Anunciar')}
+                  style={styles.buttonTab}
+              >            
+              <IconAnunciar/>
+              <Text style={styles.textTab}>Anunciar</Text>
+              </TouchableOpacity>
+  
+          </View> 
+  
+    </View>
+  
+  
+    )}
+  
 
-        <TouchableOpacity
-            onPress={()=> navigation.navigate('Procurar')}
-            style={styles.buttonTab}
-        >            
-          <IconProcurar/>
-          <Text style={styles.textTab}>Buscar</Text>
-        </TouchableOpacity>
-
-
-        <TouchableOpacity
-            onPress={()=> navigation.navigate('Anunciar')}
-            style={styles.buttonTab}
-        >            
-          <IconAnunciar/>
-          <Text style={styles.textTab}>Anunciar</Text>
-        </TouchableOpacity>
-
-       
-      </View>  */}
-
-
-
- 
-  </View>
-  )
-
-
-}
 
 
 
@@ -278,16 +231,7 @@ const styles = StyleSheet.create(
         backgroundColor: '#FFFFFF',      
         marginBottom: 50
       },
-
-      containerPrincipal2: {
-        flex: 1,
-        marginTop: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',        
-        backgroundColor: '#FFFFFF',      
-        marginBottom: 50
-      },
-
+  
       btAnunciar:{
         backgroundColor:'#3366FF',
         width: 280, 
@@ -306,21 +250,7 @@ const styles = StyleSheet.create(
         fontWeight:'bold',
         // textAlign: 'center',
       },
-
-      textEntrada:{   
-        color: '#3366FF',
-        fontSize:20,
-        fontWeight:'bold',
-        // alignItems:'flex-start',
-        alignSelf:'flex-start',
-        marginLeft:'10%',
-        // marginLeft:10,
-        
-      },
-      
-      btTextInput:{
-        width: '80%', height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5,
-      },
+  
   
       btPesquisar:{
         backgroundColor:'#3366FF',
@@ -424,6 +354,4 @@ const styles = StyleSheet.create(
      
     });
 
-
-
-export default CadastrarPessoa;
+export default AtualizarPessoa;

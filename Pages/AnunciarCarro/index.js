@@ -66,7 +66,7 @@ const AnunciarCarro = ({navigation}) => {
   </TouchableOpacity>
 
   <TouchableOpacity
-      onPress={()=> navigation.navigate('Logout')}
+      onPress={()=> navigation.navigate('MenuPessoas')}
       style={styles.buttonMenu}
   >            
     <IconSaida/>

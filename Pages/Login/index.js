@@ -33,7 +33,8 @@ const Login = ({navigation}) => {
           console.log(email,senha)
           setEmail(undefined)
           setSenha(undefined)
-          navigation.navigate('Anunciar')
+          navigation.navigate('Home')
+          // navigation.navigate('Anunciar')
 
           // if(resp.status === 200){
           //   Alert.alert('Login realizado com sucesso')
@@ -114,17 +115,25 @@ const Login = ({navigation}) => {
       </TouchableOpacity>
 
       
-        <View style={{flexDirection:'row', marginTop:'30%'}}>
+      <View style={{flexDirection:'row', marginTop:'30%'}}>
 
         <Text style={{alignSelf:'center', paddingRight: 10}}>Sou novo por aqui</Text>
 
         <TouchableOpacity
-                onPress={()=> navigation.navigate('Cadastrar')}
-                style={styles.btPesquisar}
-                >
-                <Text style={styles.textBtPesquisar}>CADASTRAR</Text>                    
-                </TouchableOpacity>
-        </View>
+          onPress={()=> navigation.navigate('Cadastrar')}
+          style={styles.btPesquisar}
+        >
+          <Text style={styles.textBtPesquisar}>CADASTRAR</Text>                    
+        </TouchableOpacity>
+        
+      </View>
+
+      <TouchableOpacity
+          onPress={()=> navigation.navigate('AtualizarPessoa')}
+          // style={styles.btPesquisar}
+        >
+          <Text style={{alignSelf:'center', marginTop:20}}>Esqueci minha senha</Text>
+        </TouchableOpacity>
 
     </View>
     {/* </ScrollView>

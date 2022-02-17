@@ -12,26 +12,27 @@ const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
 
-const Procurar = ({navigation, route}) => {
+const CarroId = ({navigation, route}) => {
 
-  const [marca, setMarca] = useState('')
+  const [id, setId] = useState()
   // const [marca, setMarca] = useState('Volkswagen')
 
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
 
-  // useEffect(useCallback(async()=>{
-  //   try{      
-  //     // const {data} = await api.get(`/carros/marca/?marca=Ford`)
-  //     // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
-  //     // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
-  //     // console.log(route)      
-  //     setCarros(data)
-  //     // setCarros(marca)
-  //   }
-  //   catch(e){}
-  // }),[isFocused])
+//   useEffect(useCallback(async()=>{
+//     try{      
+//         const { data } = await api.get(`/carro/${id}`)
+//       // const {data} = await api.get(`/carros/marca/?marca=Ford`)
+//       // const {data} = await api.get(`/carros/marca/?marca=${marca}`)
+//       // const data = await api.get(`/carros/marca/?marca=${setMarca}`)
+//       // console.log(route)      
+//       setCarros(data)
+//       // setCarros(marca)
+//     }
+//     catch(e){}
+//   }),[isFocused])
 
 
 {/* //////////////////////////////// */}
@@ -63,32 +64,32 @@ const Procurar = ({navigation, route}) => {
 // }
 {/* //////////////////////////////// */}
     
-
-const handleProcurar = async() =>{
+// const handleCarroId = async(id) =>{
+const handleCarroId = async() =>{
   try{   
-    const resp = await api.get(`/carros/marca/?marca=${marca}`)
+    const resp = await api.get(`/carro/${id}`)
     
     // setCarros(resp)
     setCarros(resp.data)
 
-    if (!resp.data.length) { 
-      // console.log("O array está vazio!") 
-    // if (!resp.length) {
-    // // if (resp.length = null) {  
-    // //   carrosResposta = {mensagem: "Carros não encontrado para marca: " + marca
-      Alert.alert("Carros não encontrado para marca: " + marca)
-      // Alert.alert("Carros não encontrado" + marca)
-    }
-
-    // if(resp.status === 200){
-    //   Alert.alert('Veículo Procurado com sucesso')
-    //   // navigation.navigate('Anunciar',{atualizar:true})
+    // if (!resp.data.length) { 
+    //   // console.log("O array está vazio!") 
+    // // if (!resp.length) {
+    // // // if (resp.length = null) {  
+    // // //   carrosResposta = {mensagem: "Carros não encontrado para marca: " + marca
+    //   Alert.alert("Carros não encontrado")
+    //   // Alert.alert("Carros não encontrado" + marca)
     // }
+
+    if(resp.status === 200){
+      Alert.alert('Veículo Procurado com sucesso')
+    //   // navigation.navigate('Anunciar',{atualizar:true})
+    }
   console.log(resp.data)        
   // console.log(resp)        
   }
   catch(e){
-      Alert.alert('Erro ao Procurar veículo')
+      Alert.alert('Erro ao localizar veículo')
       
   }      
 }
@@ -124,14 +125,14 @@ const handleProcurar = async() =>{
         <View style={styles.containerMeio2}>
           <View style={styles.flatView2}>                       
               <TextInput
-              value={marca}
-              placeholder='Digite a Marca do carro'
-              onChangeText={(e)=> setMarca(e)}
+              value={id}
+              placeholder='Digite o ID do carro'
+              onChangeText={(e)=> setId(e)}
               style={{width: 220, height: 40, borderWidth:1, padding: 4, marginBottom:0, borderRadius:5, backgroundColor:'#FFFFFF'}}
               /> 
 
               <TouchableOpacity
-              onPress={()=> handleProcurar(marca)}              
+              onPress={()=> handleCarroId(id)}              
               style={styles.btPesquisar}
               >
               <Text style={styles.textBtPesquisar}>PESQUISAR</Text>                    
@@ -140,44 +141,32 @@ const handleProcurar = async() =>{
         </View>     
 {/* //////////////////////////////// */}
 
-        <View style={styles.containerMeio}> 
+        <View style={styles.containerMeio}>
 
-       
-                           
-          <ScrollView showsVerticalScrollIndicator={false}>
+                                 
+            <ScrollView showsVerticalScrollIndicator={false}>
             {   
-            carros[0] ? carros.map((carro)=>(
-              <View style={styles.flatView} key={carro.id}>
+            // carros[0] ? carros.map((carro)=>(
+              <View style={styles.flatView} key={carros.id}>
                   <View style={{marginLeft: 10}}>
                     <IconVeiculo/>
                   </View>
                   <View>
-                  <Text style={styles.textTitle}>{carro.modelo}</Text>
-                  <Text style={styles.textDescrition}>Marca: {carro.marca}</Text>
-                  <Text style={styles.textDescrition}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>
+                  <Text style={styles.textTitle}>{carros.modelo}</Text>
+                  <Text style={styles.textDescrition}>Marca: {carros.marca}</Text>
+                  <Text style={styles.textDescrition}>Ano/Modelo: {carros.anoFabricacao}/{carros.anoModelo}</Text>
+                  <Text style={styles.textDescrition}>Cor: {carros.cor}</Text>
                   </View>                  
               </View>              
-            ))
-            :<Text>Não há carros</Text>
+            // ))
+            // :<Text>Não há carros</Text>
+
+                                       
+
             }            
-
-{/* BOTÃO TEMPORÁRIO */}
-          <TouchableOpacity
-              onPress={()=> navigation.navigate('CarroId')}
-              style={styles.btPesquisar}
-          >            
-            <Text style={styles.textBtPesquisar}>Pesquisar por Id</Text>
-          </TouchableOpacity>
-
-         
-
-
-          </ScrollView>
-          
+            </ScrollView>
          
         </View>
-      
 
 
         <View style={ styles.bottomView}>
@@ -421,4 +410,4 @@ const styles = StyleSheet.create(
   });
 
 
-export default Procurar;
+export default CarroId;

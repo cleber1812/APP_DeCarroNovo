@@ -10,10 +10,16 @@ import Logout from '../Pages/Logout';
 import Procurar from '../Pages/Procurar';
 import Login from '../Pages/Login';
 import CadastrarPessoa from '../Pages/CadastrarPessoa';
+import MenuPessoas from '../Pages/MenuPessoas';
+import ListarPessoas from '../Pages/ListarPessoas';
+import AtualizarPessoa from '../Pages/AtualizarPessoa';
+import DeletarPessoa from '../Pages/DeletarPessoa';
+import CarroId from '../Pages/CarroID';
 
 import { useAuth } from '../hooks/AuthState';
 import { TouchableOpacity } from 'react-native';
 import Icones from 'react-native-vector-icons/Ionicons';
+
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FF00FF"/>;
 
@@ -61,6 +67,11 @@ const Navigation = () => {
 
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Cadastrar" component={CadastrarPessoa} options={{headerShown:false}}/>
+        <Stack.Screen name="MenuPessoas" component={MenuPessoas} options={{headerShown:false}}/>
+        <Stack.Screen name='ListarPessoas' component={ListarPessoas} options={{headerShown:false}}/>
+        <Stack.Screen name='AtualizarPessoa' component={AtualizarPessoa} options={{headerShown:false}}/>
+        <Stack.Screen name='DeletarPessoa' component={DeletarPessoa} options={{headerShown:false}}/>
+        <Stack.Screen name='CarroId' component={CarroId} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
