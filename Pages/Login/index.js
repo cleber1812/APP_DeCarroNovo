@@ -63,7 +63,7 @@ const Login = ({navigation}) => {
         <View style={styles.headerView}>
 
         <TouchableOpacity
-            onPress={()=> navigation.navigate('Home')}
+            // onPress={()=> navigation.navigate('Home')}
             style={styles.buttonLogo}      
         >
             <Text style={styles.textLogo}
@@ -71,7 +71,7 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-            onPress={()=> navigation.navigate('Logout')}
+            onPress={()=> navigation.navigate('MenuPessoas')}
             style={styles.buttonMenu}
         >            
             <IconSaida/>
@@ -130,7 +130,7 @@ const Login = ({navigation}) => {
     {/* </ScrollView>
     </View> */}
 
-        <View style={ styles.bottomView}>
+        {/* <View style={ styles.bottomView}>
             
             <TouchableOpacity
                 onPress={()=> navigation.navigate('Home')}
@@ -157,7 +157,7 @@ const Login = ({navigation}) => {
             <Text style={styles.textTab}>Anunciar</Text>
             </TouchableOpacity>
 
-        </View> 
+        </View>  */}
 
   </View>
 
