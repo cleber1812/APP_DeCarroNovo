@@ -70,7 +70,7 @@ const Home = ({navigation, route}) => {
         </View>
       
         <View style={styles.containerMeio}>
-          {/* <Text>{`Lista de ${user.nome}`}</Text>  */}
+          <Text>{`Lista de ${user.nome}`}</Text> 
                
           <ScrollView showsVerticalScrollIndicator={false}>
             {   
