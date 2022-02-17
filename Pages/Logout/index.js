@@ -9,7 +9,7 @@ const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
-
+const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#3366FF"/>;
 
 
 const Logout = ({navigation}) => {
@@ -55,13 +55,16 @@ return (
   
       <View style={styles.containerMeio}>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <ScrollView showsVerticalScrollIndicator={false}> */}
       
   
         {/* <Text style={{alignSelf:'center'}}>Nome</Text>
 
         <Text style={{alignSelf:'center'}}>Email</Text> */}
         
+        <View style={{alignSelf: 'center'}}>
+          <IconUser/>
+        </View>
 
           {   
             // meusDados[0] ? meusDados.map((pessoa)=>(
@@ -69,7 +72,7 @@ return (
                   <View style={{marginLeft: 10}}>
                     {/* <IconVeiculo/> */}
                   </View>
-                  <View>
+                  <View>                  
                   <Text style={styles.textTitle}>Nome: {meusDados.nome}</Text>
                   <Text style={styles.textDescrition}>Id: {meusDados.id}</Text>
                   <Text style={styles.textDescrition}> Email: {meusDados.email}</Text>                  
@@ -78,7 +81,7 @@ return (
             // ))
             // :<Text>Não há pessoas</Text>
           }  
-          </ScrollView>
+          {/* </ScrollView> */}
         
           
       </View>

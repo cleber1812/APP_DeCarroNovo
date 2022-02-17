@@ -9,6 +9,7 @@ const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
 const IconProcurar = () => <Icones name="search" size={30} color="#FFFFFF"/>;
 const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFFFF"/>;
+const IconUser = () => <Icones name="person-circle-sharp" size={50} color="#3366FF"/>;
 
 
 const ListarPessoas = ({navigation}) => {
@@ -62,6 +63,7 @@ return (
                   <View style={{marginLeft: 10}}>
                     {/* <IconVeiculo/> */}
                   </View>
+                  <IconUser/>
                   <View>
                   <Text style={styles.textTitle}>{pessoa.nome}</Text>
                   <Text style={styles.textDescrition}>Id: {pessoa.id}</Text>
