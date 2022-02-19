@@ -17,7 +17,7 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 const Home = ({navigation, route}) => {
   
-  const {user} = useAuth
+  const {user} = useAuth()
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
@@ -70,7 +70,7 @@ const Home = ({navigation, route}) => {
         </View>
       
         <View style={styles.containerMeio}>
-          {/* <Text>{`Lista de ${user.nome}`}</Text>  */}
+          <Text>{`Usuário logado: ${user.nome}`}</Text> 
                
           <ScrollView showsVerticalScrollIndicator={false}>
             {   
