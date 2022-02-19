@@ -3,6 +3,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
+import { useAuth } from '../../hooks/AuthState';
 
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
@@ -13,18 +14,19 @@ const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#336
 
 
 const Logout = ({navigation}) => {
+  const { user } = useAuth()
 
-  const [meusDados, setMeusDados] = useState([])
-//verificar se tem array de dependência mesmo
+//   const [meusDados, setMeusDados] = useState([])
+// //verificar se tem array de dependência mesmo
 
-  useEffect(useCallback(async()=>{
-    try{
-      const { data } = await api.get('meusdados')
-      console.log(data)
-      setMeusDados(data)
-    }
-    catch(e){}
-  }),[])
+//   useEffect(useCallback(async()=>{
+//     try{
+//       const { data } = await api.get('meusdados')
+//       console.log(data)
+//       setMeusDados(data)
+//     }
+//     catch(e){}
+//   }),[])
 
 
 return (
@@ -68,14 +70,15 @@ return (
 
           {   
             // meusDados[0] ? meusDados.map((pessoa)=>(
-              <View style={styles.flatView} key={meusDados.id}>
+              // <View style={styles.flatView} key={meusDados.id}>
+              <View style={styles.flatView}>
                   <View style={{marginLeft: 10}}>
                     {/* <IconVeiculo/> */}
                   </View>
                   <View>                  
-                  <Text style={styles.textTitle}>Nome: {meusDados.nome}</Text>
-                  <Text style={styles.textDescrition}>Id: {meusDados.id}</Text>
-                  <Text style={styles.textDescrition}> Email: {meusDados.email}</Text>                  
+                  <Text style={styles.textTitle}>{user.nome}</Text>
+                  {/* <Text style={styles.textDescrition}>Id: {user.id}</Text> */}
+                  <Text style={styles.textDescrition}> Email: {user.email}</Text>                  
                   </View>                  
               </View>              
             // ))
