@@ -26,7 +26,7 @@ const Home = ({navigation, route}) => {
     try{
       const {data} = await api.get('carros')
       console.log(route)      
-      console.log(user)
+      console.log(user)      
       setCarros(data)
     }
     catch(e){}
@@ -70,7 +70,7 @@ const Home = ({navigation, route}) => {
         </View>
       
         <View style={styles.containerMeio}>
-          <Text>{`Usuário logado: ${user.nome}`}</Text> 
+          {/* <Text>{`Usuário logado: ${user.nome}`}</Text>  */}
                
           <ScrollView showsVerticalScrollIndicator={false}>
             {   
