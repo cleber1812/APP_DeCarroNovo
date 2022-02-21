@@ -3,8 +3,7 @@ import { general } from '../../src/styles/index';
 
 const styles = StyleSheet.create(
     {
-        ...general,
-     
+      ...general,     
     });
 
 export default styles;
