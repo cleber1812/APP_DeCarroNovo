@@ -30,6 +30,8 @@ const AtualizarCarro = ({navigation}) => {
             modelo,
             anoFabricacao: Number(anoF),
             anoModelo: Number(anoM),
+            // anoFabricacao: (anoF),
+            // anoModelo: (anoM),
             cor,    
           }
 
