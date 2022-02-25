@@ -48,6 +48,9 @@ const CadastrarPessoa = ({navigation}) => {
             navigation.navigate('Login')
             // navigation.navigate('Anunciar')
           }
+          // if(resp.status === 401){
+          //   Alert.alert('E-mail já cadastrado no sistema')
+          // }
           console.log(resp.data)
           
       }catch(e){
