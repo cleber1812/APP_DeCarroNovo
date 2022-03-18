@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const AuthContext = createContext()
 
 export const AuthProvider = ({children}) =>{
-  const [data, setData] = useState(async()=>{
+  const [data, setData] = useState(async([])=>{
     const token = await AsyncStorage.getItem()
     const client = await AsyncStorage.getItem()
 
