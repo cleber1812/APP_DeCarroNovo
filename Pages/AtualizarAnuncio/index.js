@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
@@ -76,7 +76,10 @@ const AtualizarCarro = ({navigation}) => {
   </View>
 
 
-    
+  {/* <KeyboardAvoidingView
+  behavior={Platform.OS === "ios" ? "padding" : "height"}
+  style={styles.containerPrincipal}
+  > */}
     <View style={styles.containerPrincipal}>
 
     <Text style={{alignSelf:'center'}}>Atualizar Anúncio</Text>
@@ -127,6 +130,7 @@ const AtualizarCarro = ({navigation}) => {
       </TouchableOpacity>
     
       </View>
+      {/* </KeyboardAvoidingView> */}
 
 
       
@@ -160,9 +164,11 @@ const AtualizarCarro = ({navigation}) => {
 
        
       </View> 
+      
 
 
   </View>
+  
   ) }
 
 
