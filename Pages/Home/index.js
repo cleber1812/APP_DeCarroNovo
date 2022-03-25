@@ -82,42 +82,41 @@ const Home = ({navigation, route}) => {
           <Text style={{backgroundColor:'#c4c4c4'}}>{`Usuário logado: ${user?.nome}`}</Text> 
                
           <ScrollView showsVerticalScrollIndicator={false}>
-            {   
-            carros[0] ? carros.map((carro)=>(
-
-              <TouchableOpacity 
-                    // style={{borderWidth:1, borderRadius:5,}}
-                    onPress={()=>handleCarroId(carro.id)}
-                  >
+          
+          {   
+            carros[0] ? carros.map((carro)=>(              
                     
-              <View style={styles.flatView} key={carro.id}>
+              <View key={carro.id}>
 
-
+                <TouchableOpacity 
+          // style={{borderWidth:1, borderRadius:5,}}
+          onPress={()=>handleCarroId(carro.id)}
+          >                                
+          
+          <View style={styles.flatView}>
 
                   <View style={{marginLeft: 10}}>
                     <IconVeiculo/>
                   </View>
-                  <View>
-                                    
+                  <View>                                    
                   
                   <Text style={styles.textTitle}>{carro.modelo}</Text>
                   <Text style={styles.textDescrition}>Marca: {carro.marca}</Text>
                   <Text style={styles.textDescrition}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>
+                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>                                 
 
-                                  
+                  </View>
 
                   </View>  
 
-                                    
+                  </TouchableOpacity>                      
 
-              </View> 
-
-              </TouchableOpacity>  
+              </View>                
 
             ))
             :<Text>Não há carros</Text>
-            }            
+            }                  
+
           </ScrollView>
          
         </View>
