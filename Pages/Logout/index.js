@@ -17,7 +17,7 @@ const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#336
 const Logout = ({navigation}) => {
   const { user, token } = useAuth()
 
-  const [meusDados, setMeusDados] = useState([])
+//   const [meusDados, setMeusDados] = useState([])
 //verificar se tem array de dependência mesmo
 
 //   useEffect(useCallback(async()=>{
@@ -73,15 +73,14 @@ return (
 
           {   
             // meusDados[0] ? meusDados.map((pessoa)=>(
-              <View style={styles.flatView} key={meusDados.id}>
+              <View style={styles.flatView}>
               {/* <View style={styles.flatView}> */}
                   <View style={{marginLeft: 10}}>                    
                   </View>
                   <View>                  
                   {/* <Text style={styles.textTitle}>{user.nome}</Text> */}
-                  <Text style={styles.textTitle}>{meusDados.nome}</Text>
-                  <Text style={styles.textDescrition}>Id: {meusDados.id}</Text>
-                  <Text style={styles.textDescrition}> Email: {meusDados.email}</Text>                  
+                  <Text style={styles.textTitle}> {user?.nome}</Text>                  
+                  <Text style={styles.textDescrition}> {`Email: ${user?.email}`} </Text>                  
                   </View>                  
               </View>              
             // ))
