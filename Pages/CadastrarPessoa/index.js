@@ -146,6 +146,8 @@ const CadastrarPessoa = ({navigation}) => {
       <TouchableOpacity
         onPress={()=> handleCadastrarPessoa()}
         style={styles.btAnunciar}
+        // disabled={false}
+        disabled={(isChecked === true)?false:true}
       >
         <Text style={styles.textAnunciar}>CADASTRAR</Text>
       </TouchableOpacity>
