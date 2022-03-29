@@ -23,7 +23,7 @@ const ListarPessoas = ({navigation}) => {
 
   useEffect(useCallback(async()=>{
     try{
-      // const { data } = await api.get('pessoas', {headers: {"Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjQ4NTU2MTQ2LCJleHAiOjE2NDg1NTc2NDZ9.DJ_0t61XXq-DmIrsMru7x8q8PH_F7gFMXNOpcK6qKAs'}})
+      // const { data } = await api.get('pessoas', {headers: {"Authorization": 'Berr XXXXXX'}})
       const { data } = await api.get('pessoas', {headers: {"Authorization": `Bearer ${token}`}})
       // console.log(data)
       // console.log(token)
