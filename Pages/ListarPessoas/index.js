@@ -5,6 +5,8 @@ import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 import styles from './styles'
 
+import { useAuth } from '../../hooks/AuthState';
+
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
@@ -16,11 +18,15 @@ const IconUser = () => <Icones name="person-circle-sharp" size={50} color="#3366
 const ListarPessoas = ({navigation}) => {
 
   const [pessoas, setPessoas] = useState([])
+  const { token } = useAuth()
+
 
   useEffect(useCallback(async()=>{
     try{
-      const { data } = await api.get('pessoas')
-      console.log(data)
+      // const { data } = await api.get('pessoas', {headers: {"Authorization": 'Berr XXXXXX'}})
+      const { data } = await api.get('pessoas', {headers: {"Authorization": `Bearer ${token}`}})
+      // console.log(data)
+      // console.log(token)
       setPessoas(data)
     }
     catch(e){}

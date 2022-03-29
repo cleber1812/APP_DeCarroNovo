@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView, ActivityIndicator } from 'react-native';
 import Icones from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
@@ -18,10 +18,13 @@ const Login = ({navigation}) => {
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     
+    const [loading, setLoading] = useState(false)
 
     const handleLogin = async() =>{
       
         try{
+
+          setLoading(true)
 
           //   const dados = {
           //       email,
@@ -29,11 +32,12 @@ const Login = ({navigation}) => {
           //     }
 
           // const resp = await api.post(`/login`, email, senha)
-          console.log(email,senha)
+          // console.log(email,senha)
           await signIn(email, senha)
           console.log(email,senha)
           setEmail(undefined)
           setSenha(undefined)
+          setLoading(false)
           navigation.navigate('Home')
           // navigation.navigate('Anunciar')
 
@@ -51,12 +55,20 @@ const Login = ({navigation}) => {
     }
 
 
+    if (loading === true){
+      return (
+      <View style={styles.containerLoader}>
+        <ActivityIndicator
+        size='large'
+        color='#0000ff'
+        />
+        <Text style={styles.textLoader}>Carregando dados</Text>
+        </View>
+      )}
+    
+    else{
 
-
-
-
-
-  return(
+      return(
     
 <View style={styles.container}>
     
@@ -173,6 +185,8 @@ const Login = ({navigation}) => {
 
 
   )}
+
+}
  
   
 

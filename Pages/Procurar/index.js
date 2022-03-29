@@ -163,13 +163,13 @@ const handleProcurar = async() =>{
             :<Text>Não há carros</Text>
             }            
 
-{/* BOTÃO TEMPORÁRIO */}
+{/* BOTÃO TEMPORÁRIO
           <TouchableOpacity
               onPress={()=> navigation.navigate('CarroId')}
               style={styles.btPesquisar}
           >            
             <Text style={styles.textBtPesquisar}>Pesquisar por Id</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
          
 

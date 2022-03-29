@@ -22,11 +22,13 @@ const Home = ({navigation, route}) => {
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
 
+  // const [carroId, setCarroId] = useState([])
+
 
   useEffect(useCallback(async()=>{
     try{
       const {data} = await api.get('carros')
-      console.log(route)      
+      // console.log(route)      
       console.log(user)      
       setCarros(data)
     }
@@ -37,13 +39,18 @@ const Home = ({navigation, route}) => {
   const handleCarroId = async(id) =>{
     try{   
       const {data} = await api.get(`/carro/${id}`)
-      setCarros(data)
-      console.log(data)   
-      navigation.navigate('CarroId')
+      // setCarroId(data.id)
+      // console.log(carroId)   
+      const setCarroId2 = (data.id)
+      // console.log(setCarroId2)   
+      // alert(data.id)
+      // navigation.navigate('CarroId', {nome: 'Cleber', email: 'cleber@teste.com'})
+      navigation.navigate('CarroId', {id: `${setCarroId2}`})
       }
     catch(e){}      
   }
 
+  
 
   return <View style={styles.container}>
   
@@ -71,33 +78,45 @@ const Home = ({navigation, route}) => {
         </View>
       
         <View style={styles.containerMeio}>
-          {/* <Text>{`Usuário logado: ${user.nome}`}</Text>  */}
+          
+          <Text style={{backgroundColor:'#c4c4c4'}}>{`Usuário logado: ${user?.nome}`}</Text> 
                
           <ScrollView showsVerticalScrollIndicator={false}>
-            {   
-            carros[0] ? carros.map((carro)=>(
-              <View style={styles.flatView} key={carro.id}>
+          
+          {   
+            carros[0] ? carros.map((carro)=>(              
+                    
+              <View key={carro.id}>
+
+                <TouchableOpacity 
+          // style={{borderWidth:1, borderRadius:5,}}
+          onPress={()=>handleCarroId(carro.id)}
+          >                                
+          
+          <View style={styles.flatView}>
+
                   <View style={{marginLeft: 10}}>
                     <IconVeiculo/>
                   </View>
-                  <View>
+                  <View>                                    
+                  
                   <Text style={styles.textTitle}>{carro.modelo}</Text>
                   <Text style={styles.textDescrition}>Marca: {carro.marca}</Text>
                   <Text style={styles.textDescrition}>Ano/Modelo: {carro.anoFabricacao}/{carro.anoModelo}</Text>
-                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>
+                  <Text style={styles.textDescrition}>Cor: {carro.cor}</Text>                                 
+
+                  </View>
+
                   </View>  
 
-                  {/* <TouchableOpacity 
-                    style={{borderWidth:1, borderRadius:5,}}
-                    onPress={()=>handleCarroId(carro.id)}
-                  >
-                    <Text>Ver</Text>
-                  </TouchableOpacity> */}
+                  </TouchableOpacity>                      
 
-              </View>              
+              </View>                
+
             ))
             :<Text>Não há carros</Text>
-            }            
+            }                  
+
           </ScrollView>
          
         </View>

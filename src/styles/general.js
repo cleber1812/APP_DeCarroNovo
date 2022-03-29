@@ -14,6 +14,12 @@ const general = {
     // alignItems: 'center',
     backgroundColor: '#3366FF',      
   },
+
+  containerLoader: {
+    flex:1, 
+    alignContent:'center', 
+    justifyContent:'center',
+  },
   
   headerView: {      
     height:80,
@@ -229,6 +235,10 @@ const general = {
     color: '#fff',
     fontSize:12,
     // alignSelf: 'center',
+  },
+
+  textLoader:{
+    textAlign:'center',
   },
 
 // STYLES TEXT INPUT
