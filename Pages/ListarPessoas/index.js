@@ -75,8 +75,7 @@ return (
             :<Text>Não há pessoas</Text>
           }   
         
-        
-        </ScrollView>
+                </ScrollView>
           
       </View>
   
