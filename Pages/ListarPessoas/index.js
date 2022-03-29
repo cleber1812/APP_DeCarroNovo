@@ -27,6 +27,7 @@ const ListarPessoas = ({navigation}) => {
       const { data } = await api.get('pessoas', {headers: {"Authorization": `Bearer ${token}`}})
       // console.log(data)
       // console.log(token)
+      
       setPessoas(data)
     }
     catch(e){}
