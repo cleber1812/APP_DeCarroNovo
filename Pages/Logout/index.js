@@ -17,19 +17,21 @@ const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#336
 const Logout = ({navigation}) => {
   const { user, token } = useAuth()
 
-//   const [meusDados, setMeusDados] = useState([])
+  const [meusDados, setMeusDados] = useState([])
 //verificar se tem array de dependência mesmo
 
-//   useEffect(useCallback(async()=>{
-//     try{
-//       const { data } = await api.get('meusdados')
-//       console.log(data)
-      console.log(user)
-      console.log(token)
-//       setMeusDados(data)
-//     }
-//     catch(e){}
-//   }),[])
+
+  useEffect(useCallback(async()=>{
+    try{
+      const { data } = await api.get('meusdados', {headers: {"Authorization": `Bearer ${token}`}})
+    //   console.log(data)
+    //   console.log(user)
+    //   console.log(token)
+      setMeusDados(data)
+      console.log([meusDados])
+    }
+    catch(e){}
+  }),[])
 
 
 return (
@@ -71,21 +73,47 @@ return (
           <IconUser/>
         </View>
 
-          {   
-            // meusDados[0] ? meusDados.map((pessoa)=>(
-              <View style={styles.flatView}>
-              {/* <View style={styles.flatView}> */}
+    {/* // DADOS VEM DO STORAGE + USEAUTH */}
+
+              {/* <View style={styles.flatView}>           
                   <View style={{marginLeft: 10}}>                    
                   </View>
-                  <View>                  
-                  {/* <Text style={styles.textTitle}>{user.nome}</Text> */}
+                  <View>                                    
                   <Text style={styles.textTitle}> {user?.nome}</Text>                  
                   <Text style={styles.textDescrition}> {`Email: ${user?.email}`} </Text>                  
                   </View>                  
+              </View>                           */}
+            
+          
+          {/* </ScrollView> */}
+
+
+    {/* // DADOS VEM DIRETO DA ROTA MYDATA*/}
+    {/* // NÃO CONSEGUI USAR O MAP NUM ÚNICO OBJETO*/}
+          {   
+            // meusDados && meusDados.map((pessoa)=>(
+            // carros[0] ? carros.map((carro)=>(
+              <View style={styles.flatView} 
+            //   key={pessoa.id}
+              >
+              {/* <View style={styles.flatView}> */}
+                  <View style={{marginLeft: 10}}>                    
+                  </View>
+                  <View>                                    
+                  <Text style={styles.textTitle}> {meusDados?.nome}</Text>
+                  <Text style={styles.textDescrition}> Id: {meusDados?.id}</Text>                  
+                  <Text style={styles.textDescrition}> {`Email: ${meusDados?.email}`} </Text>
+                  <Text style={styles.textDescrition}> {`Senha: ${meusDados?.senha}`} </Text>
+                  <Text style={styles.textDescrition}> {`Membro desde: ${meusDados?.createdAt}`} </Text>
+                  </View>                  
               </View>              
+            
             // ))
             // :<Text>Não há pessoas</Text>
-          }  
+          } 
+
+       
+
           {/* </ScrollView> */}
         
           
@@ -98,7 +126,7 @@ return (
                   style={styles.buttonTab}
               >            
               <IconOfertas/>
-              <Text style={styles.textTab}>Ofetas</Text> 
+              <Text style={styles.textTab}>Ofertas</Text> 
               </TouchableOpacity>
   
               <TouchableOpacity
