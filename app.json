@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "APP_DeCarroNovo",
-    "slug": "APP_DeCarroNovo",
+    "name": "DeCarroNovo",
+    "slug": "DeCarroNovo-React-Native",
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3366ff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,11 +23,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+        "backgroundColor": "#3366FF"
+      }    
     }
   }
 }
