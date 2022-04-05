@@ -43,13 +43,15 @@ const Login = ({navigation}) => {
 
           // if(resp.status === 200){
           //   Alert.alert('Login realizado com sucesso')
-          //   navigation.navigate('Anunciar')
+            // navigation.navigate('Login')
           // }
         // console.log(resp.data)        
         }
         catch(e){
             Alert.alert('Erro ao efetuar login')
-            
+            setEmail(undefined)
+            setSenha(undefined)
+            setLoading(false)
         }
         
     }
