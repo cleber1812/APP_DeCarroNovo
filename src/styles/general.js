@@ -113,6 +113,23 @@ const general = {
     // marginLeft: 10,                    
   },
 
+  flatView3: {
+    // flex: 1,
+    margin: 4,
+    marginLeft:5,
+    marginRight:5,
+    backgroundColor: '#FFFFFF',
+    // justifyContent: 'center',              
+    // paddingTop: 10,
+    // marginBottom: 0,
+    borderRadius: 10,
+    flexDirection: 'row',
+    borderColor: '#3366FF',
+    borderWidth:0,
+    elevation: 5,
+    // shadowColor: '#52006A',                        
+  },
+
   bottomView:{
  
     width: '100%', 

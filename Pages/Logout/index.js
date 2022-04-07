@@ -15,7 +15,7 @@ const IconUser = () => <Icones name="person-circle-sharp" size={150} color="#336
 
 
 const Logout = ({navigation}) => {
-  const { user, token } = useAuth()
+  const { user, token, signOut } = useAuth()
 
   const [meusDados, setMeusDados] = useState([])
 //verificar se tem array de dependência mesmo
@@ -33,6 +33,14 @@ const Logout = ({navigation}) => {
     catch(e){}
   }),[])
 
+  const handleLogout = async(navigation) => {
+    try{
+      await signOut()
+      // console.log(navigation)
+      navigation.navigate('Login')
+    }
+    catch(e){}
+  }
 
 return (
 <View style={styles.container}>
@@ -60,7 +68,7 @@ return (
   
   
   
-      <View style={styles.containerMeio}>
+      <View style={styles.containerPrincipal2}>
 
         {/* <ScrollView showsVerticalScrollIndicator={false}> */}
       
@@ -69,13 +77,13 @@ return (
 
         <Text style={{alignSelf:'center'}}>Email</Text> */}
         
-        <View style={{alignSelf: 'center'}}>
+        <View>
           <IconUser/>
         </View>
 
     {/* // DADOS VEM DO STORAGE + USEAUTH */}
 
-              {/* <View style={styles.flatView}>           
+              {/* <View style={styles.flatView3}>           
                   <View style={{marginLeft: 10}}>                    
                   </View>
                   <View>                                    
@@ -93,7 +101,7 @@ return (
           {   
             // meusDados && meusDados.map((pessoa)=>(
             // carros[0] ? carros.map((carro)=>(
-              <View style={styles.flatView} 
+              <View style={styles.flatView3} 
             //   key={pessoa.id}
               >
               {/* <View style={styles.flatView}> */}
@@ -110,11 +118,16 @@ return (
             
             // ))
             // :<Text>Não há pessoas</Text>
-          } 
-
-       
+          }        
 
           {/* </ScrollView> */}
+
+          <TouchableOpacity
+            onPress={()=> handleLogout(navigation)}
+            style={styles.btAnunciar}
+          >
+            <Text style={styles.textAnunciar}>LOGOUT</Text>
+          </TouchableOpacity>
         
           
       </View>

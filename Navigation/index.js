@@ -16,28 +16,28 @@ import AtualizarPessoa from '../Pages/AtualizarPessoa';
 import DeletarPessoa from '../Pages/DeletarPessoa';
 import CarroId from '../Pages/CarroID';
 
-import { useAuth } from '../hooks/AuthState';
-import { TouchableOpacity } from 'react-native';
-import Icones from 'react-native-vector-icons/Ionicons';
+// import { useAuth } from '../hooks/AuthState';
+// import { TouchableOpacity } from 'react-native';
+// import Icones from 'react-native-vector-icons/Ionicons';
 
 
-const IconSaida = () => <Icones name="enter" size={40} color="#FF00FF"/>;
+// const IconSaida = () => <Icones name="enter" size={40} color="#FF00FF"/>;
 
 const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
 
-  const {signOut} = useAuth()
+  // const {signOut} = useAuth()
 
-  const handleLogout = async(navigation) => {
-    try{
-      await signOut()
-      console.log(navigation)
-      navigation.navigate('Login')
-    }
-    catch(e){}
+  // const handleLogout = async(navigation) => {
+  //   try{
+  //     await signOut()
+  //     console.log(navigation)
+  //     navigation.navigate('Login')
+  //   }
+  //   catch(e){}
 
-  }
+  // }
 
   return (
     <NavigationContainer>
@@ -49,8 +49,8 @@ const Navigation = () => {
         <Stack.Screen name="AnunciarCarro" component={AnunciarCarro} options={{headerShown:false}}/>
         <Stack.Screen name="AtualizarAnuncio" component={AtualizarAnuncio} options={{headerShown:false}}/>
         <Stack.Screen name="DeletarAnuncio" component={DeletarAnuncio} options={{headerShown:false}}/>
-        {/* <Stack.Screen name="Logout" component={Logout} options={{headerShown:false}}/> */}
-        <Stack.Screen name="Logout" component={Logout} options={({navigation})=>({          
+        <Stack.Screen name="Logout" component={Logout} options={{headerShown:false}}/>
+        {/* <Stack.Screen name="Logout" component={Logout} options={({navigation})=>({          
           headerLeft: ()=> null,
           headerRight: ()=> (
             <TouchableOpacity
@@ -62,7 +62,7 @@ const Navigation = () => {
 
           )
 
-        })}/>
+        })}/> */}
 
 
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
