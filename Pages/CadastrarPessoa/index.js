@@ -48,13 +48,21 @@ const CadastrarPessoa = ({navigation}) => {
             navigation.navigate('Login')
             // navigation.navigate('Anunciar')
           }
-          // if(resp.status === 401){
-          //   Alert.alert('E-mail já cadastrado no sistema')
-          // }
+          else if (resp.status === 401){
+            Alert.alert('E-mail já cadastrado no sistema')
+          }
+          else if (resp.status === 400){
+            Alert.alert('Falha na validação')
+          }
+          if (Error=401) {Alert.alert('E-mail já cadastrado no sistema')}
           console.log(resp.data)
+          console.log(resp.status)
           
       }catch(e){
-        Alert.alert('Erro ao cadastrar pessoa')
+        Alert.alert('Erro ao cadastrar pessoa') 
+        // Error=401 ? Alert.alert('E-mail já cadastrado no sistema') : Alert.alert('Erro na validação') 
+        // if (Error=401) {Alert.alert('E-mail já cadastrado no sistema')}
+        // if (Error=400) {Alert.alert('Erro na validação')}
       }
 
   }
