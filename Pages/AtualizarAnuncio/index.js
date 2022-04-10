@@ -24,7 +24,7 @@ const AtualizarCarro = ({navigation, route}) => {
     // console.log(route)
 
 
-    const handleAtualizar = async(id) =>{
+    const handleAtualizar = async() =>{
         try{
           const dados = {
             // id: Number(id),
