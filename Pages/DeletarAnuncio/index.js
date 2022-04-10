@@ -72,6 +72,26 @@ const DeletarCarro = ({navigation, route}) => {
     
       }
     
+    const handleCarroId = async(id) =>{
+    try{   
+      const {data} = await api.get(`/carro/${id}`)
+      // setCarroId(data.id)
+      // console.log(carroId)   
+      // const setCarroId2 = (data.id)
+      // const setCarroId2 = ({id: data.id, modelo: data.modelo,})
+      const setCarroId2 = (data)
+      // const setCarroModelo2 = (data.modelo)
+      console.log(setCarroId2)   
+      // alert(data.id)      
+      // navigation.navigate('CarroId', {nome: 'Cleber', email: 'cleber@teste.com'})
+      navigation.navigate('AtualizarAnuncio', {id: `${setCarroId2.id}`, marca: `${setCarroId2.marca}`,
+                                              modelo: `${setCarroId2.modelo}`, anoFabricacao: `${setCarroId2.anoFabricacao}`,
+                                              anoModelo: `${setCarroId2.anoModelo}`,cor: `${setCarroId2.cor}` })
+      // navigation.navigate('AtualizarAnuncio', {setCarroId2})
+      }
+    catch(e){}      
+    }
+    
 
 
   return (
@@ -143,7 +163,8 @@ const DeletarCarro = ({navigation, route}) => {
             <ListItem
                 data={item}
                 deletar = {()=> mensagemDelete(item.id)}
-                editar = {()=> navigation.navigate('AtualizarAnuncio')}                
+                // editar = {()=> navigation.navigate('AtualizarAnuncio')}                
+                editar = {()=> handleCarroId(item.id)}                
             />
             // <View style={styles.flatView}>      
             // <Text style={styles.textDescrition}>{item.id}  </Text>

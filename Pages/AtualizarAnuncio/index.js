@@ -13,19 +13,21 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 
 
-const AtualizarCarro = ({navigation}) => {
-    const [id, setId] = useState()
-    const [marca, setMarca] = useState()
-    const [modelo, setModelo] = useState()
-    const [anoF, setAnoF] = useState()
-    const [anoM, setAnoM] = useState()
-    const [cor, setCor] = useState()
+const AtualizarCarro = ({navigation, route}) => {
+    // const [id, setId] = useState(`${route.params?.id}`)
+    const [marca, setMarca] = useState(`${route.params?.marca}`)
+    const [modelo, setModelo] = useState(`${route.params?.modelo}`)
+    const [anoF, setAnoF] = useState(`${route.params?.anoFabricacao}`)
+    const [anoM, setAnoM] = useState(`${route.params?.anoModelo}`)
+    const [cor, setCor] = useState(`${route.params?.cor}`)
+
+    // console.log(route)
 
 
     const handleAtualizar = async(id) =>{
         try{
           const dados = {
-            id: Number(id),
+            // id: Number(id),
             marca,
             modelo,
             anoFabricacao: Number(anoF),
@@ -35,7 +37,7 @@ const AtualizarCarro = ({navigation}) => {
             cor,    
           }
 
-          const resp = await api.put(`/carro/${id}`,dados)
+          const resp = await api.put(`/carro/${route.params?.id}`,dados)
           if(resp.status === 200){
             Alert.alert('Veículo atualizado com sucesso')
             navigation.navigate('Anunciar',{atualizar:true})
@@ -84,12 +86,12 @@ const AtualizarCarro = ({navigation}) => {
 
     <Text style={{alignSelf:'center'}}>Atualizar Anúncio</Text>
     
-      <TextInput
+      {/* <TextInput
         value={id}
         placeholder='Digite o número do anúncio'        
         onChangeText={(e)=> setId(e)}
         style={styles.btTextInput}
-      />
+      /> */}
  
       <TextInput
         value={marca}
