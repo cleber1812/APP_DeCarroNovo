@@ -125,7 +125,7 @@ const AtualizarCarro = ({navigation, route}) => {
       />      
 
       <TouchableOpacity
-        onPress={()=> handleAtualizar(id)}
+        onPress={()=> handleAtualizar()}
         style={styles.btAnunciar}
       >
           <Text style={styles.textAnunciar}>ATUALIZAR ANÚNCIO</Text>
