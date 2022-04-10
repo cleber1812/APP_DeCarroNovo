@@ -5,6 +5,8 @@ import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native';
 import Icones from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
+import { FlatList } from 'react-native-gesture-handler';
+import ListItem from '../../src/componentes/List/carros';
 
 const IconSaida = () => <Icones name="enter" size={40} color="#FFFFFF"/>;
 const IconOfertas = () => <Icones name="car" size={30} color="#FFFFFF"/>;
@@ -27,7 +29,22 @@ const DeletarCarro = ({navigation, route}) => {
 
     }),[isFocused2])
 
+
+    function mensagemDelete(id){
     
+      Alert.alert(
+        "Excluir Registro",
+        "Deseja Excluir este Registro?",
+        [
+          { text: "Não", onPress: () => console.log("Cancel Pressed"), style: "cancel" },
+          { text: "Sim", onPress: () => handleDeletar(id) }
+        ],
+        { cancelable: true }
+      );  
+                  
+    }
+
+
     const handleDeletar = async(id) => {
         try{
           // const dados = {id: Number(id)  }
@@ -86,11 +103,11 @@ const DeletarCarro = ({navigation, route}) => {
 
     
     <View style={styles.containerMeio}>
-    <ScrollView showsVerticalScrollIndicator={false}>
+    {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
     <Text style={{alignSelf:'center'}}>Deletar Anúncio</Text>
 
-      {
+      {/* {
         carros[0] ? carros.map((carro)=>(
           <View style={{display:'flex', flexDirection:'row'}} key={carro.id}>
           
@@ -110,14 +127,37 @@ const DeletarCarro = ({navigation, route}) => {
           >
               <IconExcluir/>
               {/* <Text style={{alignSelf:'center', color:'black', fontWeight:'bold',fontSize:18}}> EXCLUIR </Text> */}
-          </TouchableOpacity>
+          {/* </TouchableOpacity>
            
           </View>
         ))
 
         :<Text>Não há carros</Text>
-      }
-    </ScrollView>
+      }  */}
+      
+
+        <FlatList
+            data={carros}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+            <ListItem
+                data={item}
+                deletar = {()=> mensagemDelete(item.id)}
+                editar = {()=> navigation.navigate('AtualizarAnuncio')}                
+            />
+            // <View style={styles.flatView}>      
+            // <Text style={styles.textDescrition}>{item.id}  </Text>
+            // <Text style={styles.textDescrition}>{item.modelo}</Text>
+            // </View>
+            )}
+            // ItemSeparatorComponent={()=><Separator/>}
+            
+        >
+
+        </FlatList>
+
+
+    {/* </ScrollView> */}
     </View>
     
 

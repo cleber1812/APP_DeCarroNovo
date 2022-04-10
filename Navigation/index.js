@@ -42,7 +42,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       {/* <Stack.Navigator> */}
-      <Stack.Navigator initialRouteName='Login'>      
+      <Stack.Navigator initialRouteName='DeletarAnuncio'>      
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Stack.Screen name="Procurar" component={Procurar} options={{headerShown:false}}/>
         <Stack.Screen name="Anunciar" component={Anunciar} options={{headerShown:false}}/>
