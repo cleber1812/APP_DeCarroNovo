@@ -86,12 +86,12 @@ const Login = ({navigation}) => {
             >DeCarroNovo</Text>               
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
             onPress={()=> navigation.navigate('MenuPessoas')}
             style={styles.buttonMenu}
         >            
             <IconSaida/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         
         </View>
 
@@ -143,12 +143,12 @@ const Login = ({navigation}) => {
         
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
           onPress={()=> navigation.navigate('AtualizarPessoa')}
           // style={styles.btPesquisar}
         >
           <Text style={{alignSelf:'center', marginTop:20}}>Esqueci minha senha</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
     </View>
     {/* </ScrollView>

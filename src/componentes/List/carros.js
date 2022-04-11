@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Animated, TouchableOpacity } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// import styles from './styles';
+import styles from './styles';
 
 function PuxarEsquerda(progress, eixoX){
     const scale = eixoX.interpolate({
@@ -41,15 +41,15 @@ export default function ListItem({data, deletar, editar}) {
         onSwipeableLeftOpen={deletar}
         renderRightActions={(progress, eixoX) => <PuxarDireita progress={progress} eixoX={eixoX} onPress={editar} />}
     >
-    <View style={styles.container}>
+    <View style={styles.flatView}>
       
-      <View style={styles.titulo}>
+      <View >
       {/* <FontAwesome style={styles.icone} name="square" size={20} color={data.cor}></FontAwesome> */}
-      <Text style={styles.texto}>{data.id}  </Text>
+      <Text style={styles.textoList2}>{data.id}  </Text>
       
       </View>
-      <View style={styles.subtitulo}>
-      <Text style={styles.textoSub}>{data.modelo} - </Text>
+      <View>
+      <Text style={styles.textTitle}>{data.modelo}</Text>
       {/* <Text style={styles.textoSub}>{data.hora}</Text> */}
       </View>
       
@@ -61,50 +61,50 @@ export default function ListItem({data, deletar, editar}) {
 }
 
 
-const styles = StyleSheet.create({
-    container:{
-        backgroundColor:'#FFF',
-        paddingHorizontal:10,
-        paddingVertical:12,
+// const styles = StyleSheet.create({
+//     container2:{
+//         backgroundColor:'#FFF',
+//         paddingHorizontal:10,
+//         paddingVertical:12,
 
-    },
+//     },
 
-    texto:{
-        color:'#222',
-        fontSize:17,
+//     texto:{
+//         color:'#222',
+//         fontSize:17,
        
-    },
-    deletar:{
-        backgroundColor:'#d62525',
-        justifyContent:'center',
-        flex:1
+//     },
+//     deletar:{
+//         backgroundColor:'#d62525',
+//         justifyContent:'center',
+//         flex:1
        
-    },
-    editar:{
-        backgroundColor:'#066720',
-        justifyContent:'center',
+//     },
+//     editar:{
+//         backgroundColor:'#066720',
+//         justifyContent:'center',
         
        
-    },
-    textoList:{
-        color:'#FFF',
-        fontSize:19,
-        padding:20
-    },
+//     },
+//     textoList:{
+//         color:'#FFF',
+//         fontSize:19,
+//         padding:20
+//     },
 
-    titulo:{
-        flexDirection:'row',
-    },
+//     titulo:{
+//         flexDirection:'row',
+//     },
 
-    subtitulo:{
-        flexDirection:'row',
-        marginTop:4,
+//     subtitulo:{
+//         flexDirection:'row',
+//         marginTop:4,
         
-    },
+//     },
 
-    icone:{
-        marginRight:4,
-        marginTop:2
-    }
-});
+//     icone:{
+//         marginRight:4,
+//         marginTop:2
+//     }
+// });
 

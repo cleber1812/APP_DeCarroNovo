@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect, useCallback} from 'react';
-import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native';
 import Icones from 'react-native-vector-icons/Ionicons';
@@ -18,12 +18,16 @@ const DeletarCarro = ({navigation, route}) => {
     const [carros, setCarros] = useState([])
     const isFocused2 = useIsFocused()
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(useCallback(async()=>{
 
       try{
+        setLoading(true)
         const {data} = await api.get('carros')
         console.log(data)
         setCarros(data)
+        setLoading(false)
       }
       catch(e){}
 
@@ -92,7 +96,20 @@ const DeletarCarro = ({navigation, route}) => {
     catch(e){}      
     }
     
-
+    
+    
+    if (loading === true){
+      return (
+      <View style={styles.containerLoader}>
+        <ActivityIndicator
+        size='large'
+        color='#0000ff'
+        />
+        <Text style={styles.textLoader}>Carregando dados</Text>
+        </View>
+      )}
+    
+    else{
 
   return (
   
@@ -125,7 +142,11 @@ const DeletarCarro = ({navigation, route}) => {
     <View style={styles.containerMeio}>
     {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
-    <Text style={{alignSelf:'center'}}>Deletar Anúncio</Text>
+    <View style={{flexDirection: 'row', justifyContent:'space-between', margin:10}}>
+    <Text style={{alignSelf:'center'}}>Deletar</Text>
+    <Text style={{alignSelf:'center'}}>Anúncio</Text>
+    <Text style={{alignSelf:'center'}}>Editar</Text>
+    </View>
 
       {/* {
         carros[0] ? carros.map((carro)=>(
@@ -190,7 +211,7 @@ const DeletarCarro = ({navigation, route}) => {
               style={styles.buttonTab}
           >            
             <IconOfertas/>
-            <Text style={styles.textTab}>Ofetas</Text> 
+            <Text style={styles.textTab}>Ofertas</Text> 
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -216,7 +237,8 @@ const DeletarCarro = ({navigation, route}) => {
 
 
     </View> 
-  )      
+  
+  )}      
 }
 
 

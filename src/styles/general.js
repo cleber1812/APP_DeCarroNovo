@@ -264,6 +264,63 @@ const general = {
     width: '80%', height: 40, borderWidth:1, padding: 4, marginBottom:8, borderRadius:5,
   },
         
+
+
+// STYLES DO LISTITEM CARROS
+
+container2:{
+  backgroundColor:'#FFF',
+  paddingHorizontal:10,
+  paddingVertical:12,
+
+},
+
+texto:{
+  color:'#222',
+  fontSize:17,
+ 
+},
+deletar:{
+  backgroundColor:'#d62525',
+  justifyContent:'center',
+  flex:1
+ 
+},
+editar:{
+  backgroundColor:'#066720',
+  justifyContent:'center',
+  
+ 
+},
+textoList:{
+  color:'#FFF',
+  fontSize:19,
+  padding:20
+},
+
+textoList2:{
+  color:'#000',
+  fontSize:19,
+  padding:20
+},
+
+
+titulo:{
+  flexDirection:'row',
+},
+
+subtitulo:{
+  flexDirection:'row',
+  marginTop:4,
+  
+},
+
+icone:{
+  marginRight:4,
+  marginTop:2
+}
+
+
 };
 
 export default general;

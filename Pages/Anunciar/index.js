@@ -46,19 +46,19 @@ const Anunciar = ({navigation}) => {
     </TouchableOpacity>
 
 
-    <TouchableOpacity
+    {/* <TouchableOpacity
       onPress={()=> navigation.navigate('AtualizarAnuncio')}
       style={styles.btAnunciar}
     >
       <Text style={styles.textAnunciar}>ATUALIZAR ANÚNCIO</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
 
 
     <TouchableOpacity
       onPress={()=> navigation.navigate('DeletarAnuncio')}
       style={styles.btAnunciar}
     >
-      <Text style={styles.textAnunciar}>DELETAR ANÚNCIO</Text>
+      <Text style={styles.textAnunciar}>DELETAR/EDITAR</Text>
     </TouchableOpacity>
 
     </View>
@@ -70,7 +70,7 @@ const Anunciar = ({navigation}) => {
               style={styles.buttonTab}
           >            
             <IconOfertas/>
-            <Text style={styles.textTab}>Ofetas</Text> 
+            <Text style={styles.textTab}>Ofertas</Text> 
           </TouchableOpacity>
 
           <TouchableOpacity
