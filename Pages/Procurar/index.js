@@ -188,7 +188,7 @@ const handleProcurar = async() =>{
               style={styles.buttonTab}
           >            
             <IconOfertas/>
-            <Text style={styles.textTab}>Ofetas</Text> 
+            <Text style={styles.textTab}>Ofertas</Text> 
           </TouchableOpacity>
 
           <TouchableOpacity
