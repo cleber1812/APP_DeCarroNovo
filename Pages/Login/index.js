@@ -97,7 +97,7 @@ const Login = ({navigation}) => {
 
     {/* <View style={styles.containerMeio}>
         <ScrollView showsVerticalScrollIndicator={false}> */}
-    <View style={styles.containerPrincipal}>
+    <View style={styles.containerPrincipal3}>
     
 
       <Text style={styles.textEntrada}>Email</Text>

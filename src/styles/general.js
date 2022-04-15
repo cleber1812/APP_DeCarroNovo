@@ -60,6 +60,15 @@ const general = {
     // marginBottom: 0,
   },
 
+  containerMeio3: {
+    flex: 1,
+    marginTop: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#c4c4c4',
+  },
+
   containerPrincipal: {
     flex: 1,
     marginTop: 1,
@@ -75,7 +84,15 @@ const general = {
     justifyContent: 'flex-start',
     alignItems: 'center',        
     backgroundColor: '#FFFFFF',      
-    marginBottom: 50
+    // marginBottom: 50
+  },
+
+  containerPrincipal3: {
+    flex: 1,
+    marginTop: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',          
   },
 
   flatView: {

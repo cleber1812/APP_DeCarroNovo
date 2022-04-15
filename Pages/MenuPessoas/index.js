@@ -36,7 +36,7 @@ const MenuPessoas = ({navigation}) => {
     </View>
 
 
-    <View style={styles.containerPrincipal}>
+    <View style={styles.containerPrincipal3}>
 
     <TouchableOpacity
       onPress={()=> navigation.navigate('Login')}
@@ -87,7 +87,7 @@ const MenuPessoas = ({navigation}) => {
 
     </View>
 
-    <View style={ styles.bottomView}>
+    {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -115,7 +115,7 @@ const MenuPessoas = ({navigation}) => {
           </TouchableOpacity>
 
          
-        </View>
+        </View> */}
 
   </View>;
 }

@@ -59,7 +59,7 @@ return (
   
   
   
-      <View style={styles.containerPrincipal}>
+      <View style={styles.containerPrincipal3}>
       
   
         <Text style={{alignSelf:'center'}}>DeletarPessoa</Text>
@@ -85,7 +85,7 @@ return (
           
       </View>
   
-          <View style={ styles.bottomView}>
+          {/* <View style={ styles.bottomView}>
               
               <TouchableOpacity
                   onPress={()=> navigation.navigate('Home')}
@@ -112,7 +112,7 @@ return (
               <Text style={styles.textTab}>Anunciar</Text>
               </TouchableOpacity>
   
-          </View> 
+          </View>  */}
   
     </View>
   

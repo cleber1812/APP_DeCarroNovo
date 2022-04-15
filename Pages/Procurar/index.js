@@ -141,7 +141,7 @@ const handleProcurar = async() =>{
         </View>     
 {/* //////////////////////////////// */}
 
-        <View style={styles.containerMeio}> 
+        <View style={styles.containerMeio3}> 
 
        
                            
@@ -181,7 +181,7 @@ const handleProcurar = async() =>{
       
 
 
-        <View style={ styles.bottomView}>
+        {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -209,7 +209,7 @@ const handleProcurar = async() =>{
           </TouchableOpacity>
 
          
-        </View>
+        </View> */}
       
       
 

@@ -37,7 +37,7 @@ const AnunciarCarro = ({navigation}) => {
           const resp = await api.post('carros',dados)
           if(resp.status === 200){
             Alert.alert('Veículo criado com sucesso')
-            navigation.navigate('Anunciar',{atualizar:true})
+            navigation.navigate('Home',{atualizar:true})
           }
           console.log(resp.data)
           // navigation.navigate('Login')
@@ -75,7 +75,7 @@ const AnunciarCarro = ({navigation}) => {
   </View>
 
 
-  <View style={styles.containerPrincipal}>
+  <View style={styles.containerPrincipal3}>
     
     <Text style={{alignSelf:'center'}}>Anunciar Carro</Text>
 
@@ -126,7 +126,7 @@ const AnunciarCarro = ({navigation}) => {
 
 
       
-    <View style={ styles.bottomView}>
+    {/* <View style={ styles.bottomView}>
         
         <TouchableOpacity
             onPress={()=> navigation.navigate('Home')}
@@ -154,7 +154,7 @@ const AnunciarCarro = ({navigation}) => {
         </TouchableOpacity>
 
        
-      </View> 
+      </View>  */}
 
 
 

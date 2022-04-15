@@ -66,7 +66,7 @@ const DeletarCarro = ({navigation, route}) => {
 
           if(data.status === 200){
             Alert.alert('Veículo deletado com sucesso')
-            navigation.navigate('Anunciar',{atualizar:true})
+            navigation.navigate('Home',{atualizar:true})
           }
           // console.log(resp.data)
           // navigation.navigate('Login')
@@ -139,7 +139,7 @@ const DeletarCarro = ({navigation, route}) => {
 
 
     
-    <View style={styles.containerMeio}>
+    <View style={styles.containerMeio3}>
     {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
     <View style={{flexDirection: 'row', justifyContent:'space-between', margin:10}}>
@@ -204,7 +204,7 @@ const DeletarCarro = ({navigation, route}) => {
     
 
 
-    <View style={ styles.bottomView}>
+    {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -232,7 +232,7 @@ const DeletarCarro = ({navigation, route}) => {
           </TouchableOpacity>
 
          
-        </View> 
+        </View>  */}
 
 
 

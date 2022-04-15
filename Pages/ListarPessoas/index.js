@@ -59,7 +59,7 @@ return (
   
   
   
-      <View style={styles.containerMeio}>          
+      <View style={styles.containerMeio3}>          
                
         <ScrollView showsVerticalScrollIndicator={false}>
   
@@ -86,7 +86,7 @@ return (
           
       </View>
   
-          <View style={ styles.bottomView}>
+          {/* <View style={ styles.bottomView}>
               
               <TouchableOpacity
                   onPress={()=> navigation.navigate('Home')}
@@ -113,7 +113,7 @@ return (
               <Text style={styles.textTab}>Anunciar</Text>
               </TouchableOpacity>
   
-          </View> 
+          </View>  */}
   
     </View>
   

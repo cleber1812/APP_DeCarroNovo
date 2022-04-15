@@ -40,7 +40,7 @@ const AtualizarCarro = ({navigation, route}) => {
           const resp = await api.put(`/carro/${route.params?.id}`,dados)
           if(resp.status === 200){
             Alert.alert('Veículo atualizado com sucesso')
-            navigation.navigate('Anunciar',{atualizar:true})
+            navigation.navigate('Home',{atualizar:true})
           }
         console.log(resp.data)        
         }
@@ -82,7 +82,7 @@ const AtualizarCarro = ({navigation, route}) => {
   behavior={Platform.OS === "ios" ? "padding" : "height"}
   style={styles.containerPrincipal}
   > */}
-    <View style={styles.containerPrincipal}>
+    <View style={styles.containerPrincipal3}>
 
     <Text style={{alignSelf:'center'}}>Atualizar Anúncio</Text>
     
@@ -137,7 +137,7 @@ const AtualizarCarro = ({navigation, route}) => {
 
       
       
-    <View style={ styles.bottomView}>
+    {/* <View style={ styles.bottomView}>
         
         <TouchableOpacity
             onPress={()=> navigation.navigate('Home')}
@@ -165,7 +165,7 @@ const AtualizarCarro = ({navigation, route}) => {
         </TouchableOpacity>
 
        
-      </View> 
+      </View>  */}
       
 
 

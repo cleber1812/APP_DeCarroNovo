@@ -139,7 +139,7 @@ const CarroId = ({navigation, route}) => {
         </View>      */}
 {/* //////////////////////////////// */}
 
-        <View style={styles.containerMeio}>
+        <View style={styles.containerMeio3}>
           {/* <Text>Dados na rota :{route.params?.nome} + {route.params?.email}</Text> */}
           {/* <Text>{route.params?.id}</Text> */}
 
@@ -169,7 +169,7 @@ const CarroId = ({navigation, route}) => {
         </View>
 
 
-        <View style={ styles.bottomView}>
+        {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -197,7 +197,7 @@ const CarroId = ({navigation, route}) => {
           </TouchableOpacity>
 
          
-        </View>
+        </View> */}
       
       
 

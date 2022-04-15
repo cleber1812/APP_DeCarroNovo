@@ -45,18 +45,17 @@ const CadastrarPessoa = ({navigation}) => {
           const resp = await api.post('pessoas',{nome, email, senha})
           if(resp.status === 200){
             Alert.alert('Pessoa cadastrada com sucesso')
-            navigation.navigate('Login')
-            // navigation.navigate('Anunciar')
+            navigation.navigate('Login')            
           }
           else if (resp.status === 401){
             Alert.alert('E-mail já cadastrado no sistema')
           }
-          else if (resp.status === 400){
-            Alert.alert('Falha na validação')
-          }
-          if (Error=401) {Alert.alert('E-mail já cadastrado no sistema')}
-          console.log(resp.data)
-          console.log(resp.status)
+          // else if (resp.status === 400){
+          //   Alert.alert('Falha na validação')
+          // }
+          // if (Error=401) {Alert.alert('E-mail já cadastrado no sistema')}
+          // console.log(resp.data)
+          // console.log(resp.status)
           
       }catch(e){
         Alert.alert('Erro ao cadastrar pessoa') 
@@ -94,7 +93,7 @@ const CadastrarPessoa = ({navigation}) => {
 
   </View>
 
-  <View style={styles.containerMeio}>
+  <View style={styles.containerMeio3}>
   
       <ScrollView showsVerticalScrollIndicator={false}>
 

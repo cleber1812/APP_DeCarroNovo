@@ -36,7 +36,7 @@ const Anunciar = ({navigation}) => {
     </View>
 
 
-    <View style={styles.containerPrincipal}>
+    <View style={styles.containerPrincipal3}>
 
     <TouchableOpacity
       onPress={()=> navigation.navigate('AnunciarCarro')}
@@ -63,7 +63,7 @@ const Anunciar = ({navigation}) => {
 
     </View>
 
-    <View style={ styles.bottomView}>
+    {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -91,7 +91,7 @@ const Anunciar = ({navigation}) => {
           </TouchableOpacity>
 
          
-        </View>
+        </View> */}
 
   </View>;
 }

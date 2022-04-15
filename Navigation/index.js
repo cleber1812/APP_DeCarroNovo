@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Pages/Home';
 import Anunciar from '../Pages/Anunciar';
 import AnunciarCarro from '../Pages/AnunciarCarro';
@@ -15,15 +16,46 @@ import ListarPessoas from '../Pages/ListarPessoas';
 import AtualizarPessoa from '../Pages/AtualizarPessoa';
 import DeletarPessoa from '../Pages/DeletarPessoa';
 import CarroId from '../Pages/CarroID';
-
 // import { useAuth } from '../hooks/AuthState';
 // import { TouchableOpacity } from 'react-native';
 // import Icones from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 // const IconSaida = () => <Icones name="enter" size={40} color="#FF00FF"/>;
 
 const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator();
+
+const Tabs = () => {
+  return (   
+      <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          
+          if (route.name === 'Home') {iconName = focused ? 'ios-car' : 'ios-car-outline';} 
+          else if (route.name === 'Procurar') {iconName = focused ? 'ios-search' : 'ios-search';} 
+          else if (route.name === 'Anunciar') {iconName = focused ? 'ios-megaphone' : 'ios-megaphone-outline';}
+      
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        
+        tabBarActiveTintColor: '#3366FF',
+        tabBarInactiveTintColor: '#FFFFFF',
+        tabBarActiveBackgroundColor: '#FFFFFF',
+        tabBarInactiveBackgroundColor: '#3366FF',
+        
+      })}           
+      
+      >
+        <Tab.Screen name="Home" component={Home} options={{headerShown:false}}/>
+        <Tab.Screen name="Procurar" component={Procurar} options={{headerShown:false}}/>
+        <Tab.Screen name="Anunciar" component={Anunciar} options={{headerShown:false}}/>
+       
+      </Tab.Navigator>
+  );
+}
 
 const Navigation = () => {
 
@@ -42,8 +74,8 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       {/* <Stack.Navigator> */}
-      <Stack.Navigator initialRouteName='Anunciar'>      
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+      <Stack.Navigator initialRouteName='Login'>      
+        <Stack.Screen name="Home" component={Tabs} options={{headerShown:false}}/>
         <Stack.Screen name="Procurar" component={Procurar} options={{headerShown:false}}/>
         <Stack.Screen name="Anunciar" component={Anunciar} options={{headerShown:false}}/>
         <Stack.Screen name="AnunciarCarro" component={AnunciarCarro} options={{headerShown:false}}/>

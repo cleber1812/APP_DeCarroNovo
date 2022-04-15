@@ -77,7 +77,7 @@ const Home = ({navigation, route}) => {
           
         </View>
       
-        <View style={styles.containerMeio}>
+        <View style={styles.containerMeio3}>
           
           <Text style={{backgroundColor:'#c4c4c4'}}>{`Usuário logado: ${user?.nome}`}</Text> 
                
@@ -122,7 +122,7 @@ const Home = ({navigation, route}) => {
         </View>
 
 
-        <View style={ styles.bottomView}>
+        {/* <View style={ styles.bottomView}>
         
           <TouchableOpacity
               onPress={()=> navigation.navigate('Home')}
@@ -150,7 +150,7 @@ const Home = ({navigation, route}) => {
           </TouchableOpacity>
 
          
-        </View>
+        </View> */}
       
       
 
