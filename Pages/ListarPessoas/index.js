@@ -57,14 +57,21 @@ return (
           
           </View>
   
-  
-  
+     
+          { !token && 
+      <Text style={{alignSelf:'center', color:'#ffffff'}}>Faça login para ver a lista de usuários</Text>
+    }
+
+    { token && 
+    
       <View style={styles.containerMeio3}>          
-               
+      
+      
+    
         <ScrollView showsVerticalScrollIndicator={false}>
   
         <Text style={{alignSelf:'center'}}>ListarPessoas</Text>
-
+        
           {   
             pessoas[0] ? pessoas.map((pessoa)=>(
               <View style={styles.flatView} key={pessoa.id}>
@@ -85,6 +92,8 @@ return (
                 </ScrollView>
           
       </View>
+
+        }
   
           {/* <View style={ styles.bottomView}>
               

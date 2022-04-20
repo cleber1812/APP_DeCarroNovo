@@ -107,6 +107,7 @@ const Login = ({navigation}) => {
         placeholder='digite seu e-mail'        
         autoComplete='email'
         autoCapitalize='none'
+        keyboardType="email-address"
         onChangeText={(e)=> setEmail(e)}
         style={styles.btTextInput}
       />

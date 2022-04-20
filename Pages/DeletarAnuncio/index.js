@@ -98,18 +98,18 @@ const DeletarCarro = ({navigation, route}) => {
     
     
     
-    if (loading === true){
-      return (
-      <View style={styles.containerLoader}>
-        <ActivityIndicator
-        size='large'
-        color='#0000ff'
-        />
-        <Text style={styles.textLoader}>Carregando dados</Text>
-        </View>
-      )}
+    // if (loading === true){
+    //   return (
+    //   <View style={styles.containerLoader}>
+    //     <ActivityIndicator
+    //     size='large'
+    //     color='#0000ff'
+    //     />
+    //     <Text style={styles.textLoader}>Carregando dados</Text>
+    //     </View>
+    //   )}
     
-    else{
+    // else{
 
   return (
   
@@ -137,16 +137,36 @@ const DeletarCarro = ({navigation, route}) => {
 
     </View>
 
+    { loading && 
+        <View style={styles.containerLoader}>
+        <ActivityIndicator
+        size='large'
+        color='#ffffff'
+        />
+        {/* <Text style={styles.textLoader}>Carregando dados</Text> */}
+        <Text style={{color:'#FFFFFF', alignSelf:'center'}}>Carregando dados</Text>
+        </View>
+    }
+
+    { !loading && 
+       
+    <View style={styles.containerMeio3}>
 
     
-    <View style={styles.containerMeio3}>
+
     {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
-    <View style={{flexDirection: 'row', justifyContent:'space-between', margin:10}}>
-    <Text style={{alignSelf:'center'}}>Deletar</Text>
-    <Text style={{alignSelf:'center'}}>Anúncio</Text>
-    <Text style={{alignSelf:'center'}}>Editar</Text>
-    </View>
+    
+
+    
+
+      <View style={{flexDirection: 'row', justifyContent:'space-between', margin:10}}>
+      <Text style={{alignSelf:'center'}}>Deletar</Text>
+      <Text style={{alignSelf:'center'}}>Anúncio</Text>
+      <Text style={{alignSelf:'center'}}>Editar</Text>
+      </View>
+
+
 
       {/* {
         carros[0] ? carros.map((carro)=>(
@@ -176,7 +196,7 @@ const DeletarCarro = ({navigation, route}) => {
         :<Text>Não há carros</Text>
       }  */}
       
-
+    
         <FlatList
             data={carros}
             keyExtractor={item => item.id}
@@ -198,10 +218,17 @@ const DeletarCarro = ({navigation, route}) => {
 
         </FlatList>
 
+    
+    
+     
 
     {/* </ScrollView> */}
+
+                  
     </View>
     
+    }
+
 
 
     {/* <View style={ styles.bottomView}>
@@ -239,7 +266,7 @@ const DeletarCarro = ({navigation, route}) => {
     </View> 
   
   )}      
-}
+// }
 
 
 export default DeletarCarro;

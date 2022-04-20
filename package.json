@@ -16,6 +16,8 @@
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "@rneui/base": "^4.0.0-rc.1",
+    "@rneui/themed": "^4.0.0-rc.1",
     "@ui-kitten/components": "^5.1.1",
     "axios": "^0.24.0",
     "expo": "~43.0.2",

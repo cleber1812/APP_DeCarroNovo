@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useCallback, useEffect, useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, ActivityIndicator } from 'react-native';
 import api from '../../service/api';
 import { useIsFocused } from '@react-navigation/native'
 import Icones from 'react-native-vector-icons/Ionicons';
@@ -21,18 +21,23 @@ const Home = ({navigation, route}) => {
   const {user} = useAuth()
   const [carros, setCarros] = useState([])
   const isFocused = useIsFocused()
+  const [loading, setLoading] = useState(false)
 
   // const [carroId, setCarroId] = useState([])
 
 
   useEffect(useCallback(async()=>{
     try{
+      setLoading(true)      
       const {data} = await api.get('carros')
       // console.log(route)      
       console.log(user)      
       setCarros(data)
+      setLoading(false)
     }
-    catch(e){}
+    catch(e){
+      setLoading(false)
+    }
   }),[isFocused])
 
 
@@ -77,6 +82,20 @@ const Home = ({navigation, route}) => {
           
         </View>
       
+
+      { loading && 
+          <View style={styles.containerLoader}>
+          <ActivityIndicator
+          size='large'
+          color='#ffffff'
+          />
+          <Text style={{alignSelf:'center', color:'#ffffff'}}>Carregando dados</Text>
+          </View>
+      }
+
+      { !loading && 
+
+
         <View style={styles.containerMeio3}>
           
           <Text style={{backgroundColor:'#c4c4c4'}}>{`Usuário logado: ${user?.nome}`}</Text> 
@@ -84,7 +103,7 @@ const Home = ({navigation, route}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
           
           {   
-            carros[0] ? carros.map((carro)=>(              
+            carros[0] ? carros.sort((a, b) => a.id < b.id ? 1:-1).map((carro)=>(              
                     
               <View key={carro.id}>
 
@@ -121,6 +140,7 @@ const Home = ({navigation, route}) => {
          
         </View>
 
+      }
 
         {/* <View style={ styles.bottomView}>
         
