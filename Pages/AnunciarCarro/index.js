@@ -4,6 +4,7 @@ import { View, Text, TextInput,TouchableOpacity, Alert, StyleSheet } from 'react
 import api from '../../service/api';
 import Icones from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
+import { Input } from '@rneui/themed';
 
 
 
@@ -17,15 +18,70 @@ const IconAnunciar = () => <Icones name="megaphone-sharp" size={30} color="#FFFF
 
 const AnunciarCarro = ({navigation}) => {
 
-  const [marca, setMarca] = useState()
-  const [modelo, setModelo] = useState()
-  const [anoF, setAnoF] = useState()
-  const [anoM, setAnoM] = useState()
-  const [cor, setCor] = useState()
+  // const [marca, setMarca] = useState()
+  // const [modelo, setModelo] = useState()
+  // const [anoF, setAnoF] = useState()
+  // const [anoM, setAnoM] = useState()
+  // const [cor, setCor] = useState()
 
+  const [marca, setMarca] = useState(null)
+  const [modelo, setModelo] = useState(null)
+  const [anoF, setAnoF] = useState(null)
+  const [anoM, setAnoM] = useState(null)
+  const [cor, setCor] = useState(null)
+
+  const [errorMarca, setErrorMarca] = useState(null)
+  const [errorModelo, setErrorModelo] = useState(null)
+  const [errorAnoF, setErrorAnoF] = useState(null)
+  const [errorAnoM, setErrorAnoM] = useState(null)
+  const [errorCor, setErrorCor] = useState(null)
+
+  const validar = () => {
+    let error = false
+    setErrorMarca(null)
+    setErrorModelo(null)
+    setErrorAnoF(null)
+    setErrorAnoM(null)
+    setErrorCor(null)
+    if (marca == null) {
+      setErrorMarca("Preencha a marca do veículo")
+      error = true
+    }
+    if (modelo == null) {
+      setErrorModelo("Preencha o modelo do veículo")
+      error = true
+    }
+    if (anoF == null) {
+      setErrorAnoF("Preencha o Ano de fabricação do veículo")
+      error = true
+    }
+    if (anoM == null) {
+      setErrorAnoM("Preencha o Ano do modelo do veículo")
+      error = true
+    }
+    if (cor == null) {
+      setErrorCor("Preencha a cor do veículo")
+      error = true
+    }
+    return !error
+  }
+
+  // const salvar = () => {
+  //   if (validar() == true){
+  //     console.log("Salvou")      
+  //   // setMarca(null)
+  //   // setModelo(null)
+  //   // setAnoF(null)
+  //   // setAnoM(null)
+  //   // setCor(null)        
+  //   }
+  // }
 
   const handleCadastrar = async() =>{
-      try{
+    if (validar()){ 
+        
+
+      try{        
           const dados = {
             marca,
             modelo,
@@ -33,18 +89,23 @@ const AnunciarCarro = ({navigation}) => {
             anoModelo: Number(anoM),
             cor,
 
-          }
+          }        
           const resp = await api.post('carros',dados)
           if(resp.status === 200){
             Alert.alert('Veículo criado com sucesso')
             navigation.navigate('Home',{atualizar:true})
-          }
-          console.log(resp.data)
-          // navigation.navigate('Login')
+          }        
+          console.log(resp.data)          
       }catch(e){
         Alert.alert('Erro ao criar veículo')
       }
 
+      setMarca(null)
+      setModelo(null)
+      setAnoF(null)
+      setAnoM(null)
+      setCor(null)
+    }
   }
 
 
@@ -79,35 +140,42 @@ const AnunciarCarro = ({navigation}) => {
     
     <Text style={{alignSelf:'center'}}>Anunciar Carro</Text>
 
-    <TextInput
+    <Input
         value={marca}
-        placeholder='Marca'
-        onChangeText={(e)=> setMarca(e)}
+        placeholder='Marca, ex: Chevrolet'
+        onChangeText={(e)=> {setMarca(e), setErrorMarca(null)}}
         style={styles.btTextInput}
+        errorMessage={errorMarca}
       />   
-      <TextInput
+      <Input
         value={modelo}
-        placeholder='Modelo'        
-        onChangeText={(e)=> setModelo(e)}
+        placeholder='Modelo, ex: Prisma'        
+        onChangeText={(e)=> {setModelo(e), setErrorModelo(null)}}
         style={styles.btTextInput}
+        errorMessage={errorModelo}
       />
-      <TextInput  
+      <Input  
         value={anoF}
-        placeholder='Ano de Fabricação'
-        onChangeText={(e)=> setAnoF(e)}
+        placeholder='Ano de Fabricação, ex: 2021'
+        keyboardType="phone-pad" 
+        onChangeText={(e)=> {setAnoF(e), setErrorAnoF(null)}}
         style={styles.btTextInput}
+        errorMessage={errorAnoF}
       />
-      <TextInput  
+      <Input  
         value={anoM}
-        placeholder='Ano do Modelo'
-        onChangeText={(e)=> setAnoM(e)}
+        placeholder='Ano do Modelo, ex: 2022'
+        keyboardType="phone-pad" 
+        onChangeText={(e)=> {setAnoM(e), setErrorAnoM(null)}}
         style={styles.btTextInput}
+        errorMessage={errorAnoM}
       /> 
-       <TextInput  
+       <Input  
         value={cor}
-        placeholder='Cor'
-        onChangeText={(e)=> setCor(e)}
+        placeholder='Cor, ex: Verde'
+        onChangeText={(e)=> {setCor(e), setErrorCor(null)}}
         style={styles.btTextInput}
+        errorMessage={errorCor}
        />
         
 
