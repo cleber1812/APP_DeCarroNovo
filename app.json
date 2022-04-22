@@ -2,7 +2,10 @@
   "expo": {
     "name": "DeCarroNovo",
     "slug": "DeCarroNovo-React-Native",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +27,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#3366FF"
-      }    
+      },
+      "package": "com.cleber1812.DeCarroNovoReactNative"
     }
   }
 }

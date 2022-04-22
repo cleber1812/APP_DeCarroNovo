@@ -30,7 +30,7 @@ const AtualizarPessoa = ({navigation}) => {
             const resp = await api.put(`/pessoa/${id}`,dados)
             if(resp.status === 200){
               Alert.alert('Pessoa atualizada com sucesso')
-              navigation.navigate('Anunciar')              
+              navigation.navigate('MenuPessoas')              
             }
             console.log(resp.data)
             
