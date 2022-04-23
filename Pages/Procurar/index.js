@@ -86,7 +86,8 @@ const handleProcurar = async() =>{
     //   // navigation.navigate('Anunciar',{atualizar:true})
     // }
   console.log(resp.data)        
-  // console.log(resp)        
+  // console.log(resp)   
+  setMarca('')     
   }
   catch(e){
       Alert.alert('Erro ao Procurar veículo')

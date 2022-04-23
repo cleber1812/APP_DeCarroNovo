@@ -114,7 +114,7 @@ const CadastrarPessoa = ({navigation}) => {
       <TextInput
         value={email}
         placeholder='Email' 
-        keyboardType="email-address"  
+        // keyboardType="email-address"  
         autoComplete='email'
         autoCapitalize='none'
         onChangeText={(e)=> setEmail(e)}
