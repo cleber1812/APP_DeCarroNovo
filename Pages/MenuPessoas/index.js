@@ -85,6 +85,13 @@ const MenuPessoas = ({navigation}) => {
       <Text style={styles.textAnunciar}>DELETAR USUÁRIO</Text>
     </TouchableOpacity>
 
+    <TouchableOpacity
+      onPress={()=> navigation.navigate('UploadImagem')}
+      style={{backgroundColor:"red", marginTop:30, borderRadius:10, width:200, height:80, alignItems:'center'}}
+    >
+    <Text style={styles.textAnunciar}>Testes Upload de imagem</Text>          
+    </TouchableOpacity>
+     
     </View>
 
     {/* <View style={ styles.bottomView}>

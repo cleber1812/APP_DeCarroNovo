@@ -16,6 +16,10 @@ import ListarPessoas from '../Pages/ListarPessoas';
 import AtualizarPessoa from '../Pages/AtualizarPessoa';
 import DeletarPessoa from '../Pages/DeletarPessoa';
 import CarroId from '../Pages/CarroID';
+import ListarImagens from '../Pages/ListarImagens';
+import UploadImagem from '../Pages/UploadImagem';
+import TirarFoto from '../Pages/TirarFoto';
+import Upload from '../Pages/Upload';
 // import { useAuth } from '../hooks/AuthState';
 // import { TouchableOpacity } from 'react-native';
 // import Icones from 'react-native-vector-icons/Ionicons';
@@ -104,6 +108,12 @@ const Navigation = () => {
         <Stack.Screen name='AtualizarPessoa' component={AtualizarPessoa} options={{headerShown:false}}/>
         <Stack.Screen name='DeletarPessoa' component={DeletarPessoa} options={{headerShown:false}}/>
         <Stack.Screen name='CarroId' component={CarroId} options={{headerShown:false}}/>
+
+        <Stack.Screen name='ListarImagens' component={ListarImagens} options={{headerShown:false}}/>
+        <Stack.Screen name='UploadImagem' component={UploadImagem} options={{headerShown:false}}/>
+        <Stack.Screen name='TirarFoto' component={TirarFoto} options={{headerShown:false}}/>
+        <Stack.Screen name='Upload' component={Upload} options={{headerShown:false}}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

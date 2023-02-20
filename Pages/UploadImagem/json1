@@ -1,0 +1,23 @@
+{
+    "message": "Image uploaded succesfully",
+    "data": [
+        {
+            "url": "http://res.cloudinary.com/dd6rpe5b4/image/upload/v1654049332/public/upload/carros/1654049331242_pneucarrokelly.jpg",
+            "id": "1654049331242_pneucarrokelly"
+        }
+    ],
+    "body": {
+        "marca": "Caoa5"
+    },
+    "imagemParaInserir": {
+        "image": "1654049331242_pneucarrokelly",
+        "marca": "Caoa5"
+    },
+    "imagemResultado": {
+        "id": 39,
+        "image": "1654049331242_pneucarrokelly",
+        "marca": "Caoa5",
+        "updatedAt": "2022-06-01T02:08:52.695Z",
+        "createdAt": "2022-06-01T02:08:52.695Z"
+    }
+}

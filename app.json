@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#3366FF"
       },
-      "package": "com.cleber1812.DeCarroNovoReactNative"
+      "package": "com.cleber1812.DeCarroNovoReactNative",
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
     }
   }
 }
